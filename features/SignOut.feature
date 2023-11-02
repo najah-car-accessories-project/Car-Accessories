@@ -5,7 +5,7 @@ Feature: Users Sign Out
   Background: 
     Given the users credentials
       | mohammadbadawi@gmail.com | mohammadbadawi2001 | Admin     |
-      | majd@gmail.com           | majd056            | Customer  |
+      | majd@gmail.com           | majd0567           | Customer  |
       | ahmad@gmail.com          | ahmad2000          | Installer |
 
   Scenario Outline: the <role> signed out
@@ -15,7 +15,6 @@ Feature: Users Sign Out
 
     Examples: 
       | email                        | password            | role        |
-      | email                        | password            | role        |
-      | "mohammadbadawi@gmail.com ]" | "mohmmadbadawi2001" | "Admin"     |
+      | "mohammadbadawi@gmail.com"	 | "mohmmadbadawi2001" | "Admin"     |
       | "majd@gmail.com"             | "majd056"           | "Customer"  |
       | "ahmad@gmail.com"            | "ahmad2000"         | "Installer" |

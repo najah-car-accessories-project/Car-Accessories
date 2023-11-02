@@ -5,7 +5,7 @@ Feature: Users Sign in
   Background: 
     Given the users credentials
       | mohammadbadawi@gmail.com | mohammadbadawi2001 | Admin     |
-      | majd@gmail.com           | majd056            | Customer  |
+      | majd@gmail.com           | majd0567           | Customer  |
       | ahmad@gmail.com          | ahmad2000          | Installer |
 
   Scenario Outline: the <role> enter valid credentials
@@ -17,10 +17,10 @@ Feature: Users Sign in
     Then go to <role> page
 
     Examples: 
-      | email                      | password            | role        |
-      | "mohammadbadawi@gmail.com" | "mohmmadbadawi2001" | "Admin"     |
-      | "majd@gmail.com"           | "majd056"           | "Customer"  |
-      | "ahmad@gmail.com"          | "ahmad2000"         | "Installer" |
+      | email                      | password            	| role        |
+      | "mohammadbadawi@gmail.com" | "mohammadbadawi2001"	| "Admin"     |
+      | "majd@gmail.com"           | "majd0567"          	| "Customer"  |
+      | "ahmad@gmail.com"          | "ahmad2000"         	| "Installer" |
 
   Scenario Outline: the <role> enter invalid credentials
     Given That the <role> is not signed in
