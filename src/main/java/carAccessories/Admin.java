@@ -5,3 +5,4 @@ public class Admin extends Users{
 		super(email, password, role);
 	}
 }
+ 

@@ -3,20 +3,60 @@ package carAccessories;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.Popup;
+
 public class Users {
+	private String name;
 	public String email;
 	public String password;
 	public String role;
 	public String contactNumber;
+	public boolean active ;
 	protected boolean isSignedIn;
-
+	
 	public Users(String email, String password, String role) {
 		this.email = email;
 		this.password = password;
 		this.role = role;
 		this.isSignedIn = false;
+		this.active = true;
+		this.contactNumber = "Empty";
+		this.name = "Empty";
+
 	}
 	
+	public Users(String newEmail, String newContactNumber, String newPassword, String newRole) {
+		this.email = newEmail;
+		this.contactNumber = newContactNumber;
+		this.password = newPassword;
+		this.role = newRole;
+		this.isSignedIn = false;
+		this.active = true;	
+	}
+
+	public void print() {
+		System.out.println("================================================================================");
+		System.out.println("\t\t\t\tUser Profile");
+		System.out.println("Email: " + this.email);
+		System.out.println("Role: " + this.role);
+		System.out.println("Contact Number: " + this.contactNumber);
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean activate) {
+		this.active = activate;
+	}
 	public boolean createAccount(String email, String password, String contactNumber) {
 		return isValidEmail(email) && isPasswordValid(password) && isValidContactNumber(contactNumber);
 	}
@@ -24,11 +64,12 @@ public class Users {
 	public boolean checkEmail(String email) {
 		return this.email.equals(email);
 	}
-	
+
+
 	public boolean checkPassword(String password) {
 		return this.password.equals(password);		
 	}
-	
+
 
 	public boolean signIn(String email, String password) {
 		this.isSignedIn = checkEmail(email) && checkPassword(password);
@@ -65,6 +106,8 @@ public class Users {
 		this.password = password;
 	}
 
+	
+
 	public String getRole() {
 		return role;
 	}
@@ -89,7 +132,7 @@ public class Users {
     }
 
     public boolean isPasswordValid(String password) {
-        return password.length() >= 8 && password.matches(".*[a-zA-Z].*") && password.matches(".*\\d.*");
+        return password.length() >= 6 && password.matches(".*[a-zA-Z].*") && password.matches(".*\\d.*");
     }
     
     public boolean isValidContactNumber(String phoneNumber) {
@@ -104,10 +147,6 @@ public class Users {
         return (this.email.equals(other.email) && this.password.equals(other.password) && this.role.equals(other.role));
     }
 	
-    @Override
-  public int hashCode() {
-   return 0;
-    }
 
 
 }

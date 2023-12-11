@@ -14,7 +14,7 @@ Feature: Users Sign Out
     Then the <role> is not signed in
 
     Examples: 
-      | email                        | password            | role        |
-      | "mohammadbadawi@gmail.com"	 | "mohmmadbadawi2001" | "Admin"     |
-      | "majd@gmail.com"             | "majd056"           | "Customer"  |
-      | "ahmad@gmail.com"            | "ahmad2000"         | "Installer" |
+      | email                      | password            | role        |
+      | "mohammadbadawi@gmail.com" | "mohmmadbadawi2001" | "Admin"     |
+      | "majd@gmail.com"           | "majd056"           | "Customer"  |
+      | "ahmad@gmail.com"          | "ahmad2000"         | "Installer" |
