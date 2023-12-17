@@ -16,22 +16,23 @@ public class App {
 	static int productIndex = 0;
 	private static Users user;
 
-
 	public static void main(String[] args) {
+
 		init();
 
 		while (true) {
 			gest();
 		}
 	}
-	
+
 	public static void init() {
 
 		adminDashboard = new AdminDashboard();
-		adminDashboard.addUser(new Customer("mohammadbadawi@gmail.com", "drhaya9999", "Customer"));
-//		adminDashboard.addUser(new Admin("mohammadbadawi@gmail.com", "badawi2001", "Admin"));
+		adminDashboard.addUser(new Customer("majdbasem6@gmail.com", "majd123", "Customer"));
+		adminDashboard.addUser(new Admin("drhaya@gmail.com", "drhaya01", "Admin"));
 //		adminDashboard.addUser(new Customer("majd@gmail.com", "majd0567", "Customer"));
-		adminDashboard.addUser(new Installer("mohammadbadawi@gmail.com", "ahmad2000 ", "Installer"));
+		adminDashboard.addUser(new Installer("mohammadbadawi01@gmail.com", "badawi01", "Installer"));
+		
 		productCatalog = new ProductCatalog();
 
 		ProductCategory carAudio = new ProductCategory("Car Audio");
@@ -51,7 +52,7 @@ public class App {
 		productCatalog.addCategory(carSecurity);
 
 		InstallationRequest installationRequest1 = new InstallationRequest("07-10-2023 9:00",
-				new Installer("ahmad@gmail.com", "ahmad2000 ", "Installer"), new Customer("d", "d", "Customer"),
+				new Installer("mohammadbadawi01@gmail.com", "badawi01", "Installer"), new Customer("majdbasem6@gmail.com", "majd123", "Customer"),
 				carAudio.getAllProducts(), "M8 twin terbo stage 3");
 
 		adminDashboard.addInstallationRequest(installationRequest1);
@@ -72,7 +73,16 @@ public class App {
 		System.out.println("2. Sign Up");
 		System.out.println("3. Exit");
 		System.out.println("\nPlease select an option:");
-		int select = scan.nextInt();
+
+		int select;
+
+		try {
+			select = scan.nextInt();
+		} catch (java.util.InputMismatchException e) {
+			System.out.println("Invalid input! Please enter a valid option.");
+			scan.nextLine();
+			return;
+		}
 
 		switch (select) {
 		case 1:
@@ -83,15 +93,22 @@ public class App {
 			password = scan.next();
 
 			userIndex = adminDashboard.authenticateUser(email, password);
-			user = adminDashboard.getUsers().get(userIndex);
-			if (userIndex != -1) {
-				if (user.checkRole("Admin"))
-					adminDashboardActivities();
-				else if (user.checkRole("Customer"))
-					customerActivities();
-				else if (user.checkRole("Installer"))
-					installerActivities();
+
+			if (userIndex == -1) {
+				System.out.println("Invalid Credentials! Please try again...\n");
+				return;
+
 			}
+
+			user = adminDashboard.getUsers().get(userIndex);
+
+			if (user.checkRole("Admin"))
+				adminDashboardActivities();
+			else if (user.checkRole("Customer"))
+				customerActivities();
+			else if (user.checkRole("Installer"))
+				installerActivities();
+
 			break;
 
 		case 2:
@@ -109,21 +126,22 @@ public class App {
 				return;
 			}
 
-			
-		
 			boolean isValid = adminDashboard.addUser(new Customer(email, password, "Customer"));
-			if(isValid)
-			{
+
+			if (isValid) {
 				System.out.println("Account Created Successfully!");
 				userIndex = adminDashboard.authenticateUser(email, password);
-				user = adminDashboard.getUsers().get(userIndex);
-				if (userIndex != -1) {
-					if (adminDashboard.getUsers().get(userIndex).checkRole("Admin"))
-						adminDashboardActivities();
-					else if (user.checkRole("Customer"))
-						customerActivities();
+
+				if (userIndex == -1) {
+					System.out.println("Invalid Credentials! Please try again...\n");
+					return;
 				}
-			}else
+
+				user = adminDashboard.getUsers().get(userIndex);
+
+				customerActivities();
+
+			} else
 				System.out.println("Account Creation Failed! Please try again...");
 			break;
 
@@ -156,7 +174,17 @@ public class App {
 
 			System.out.println("11. Sign Out");
 			System.out.println("\nPlease select an option:");
-			int select = scan.nextInt();
+
+			int select;
+
+			try {
+				select = scan.nextInt();
+			} catch (java.util.InputMismatchException e) {
+				System.out.println("Invalid input! Please enter a valid option.");
+				scan.nextLine();
+				return;
+			}
+
 			System.out.println();
 			switch (select) {
 			case 1:
@@ -235,7 +263,6 @@ public class App {
 				productCatalog.printCatalog();
 				break;
 			case 4:
-				// add category name and description
 				System.out.println("Enter Category Name:");
 				String categoryName = scan.next();
 				System.out.println("Enter Category Description:");
@@ -335,7 +362,8 @@ public class App {
 						// change state
 						System.out.println("Enter New State:");
 						String newState = scan.next();
-						adminDashboard.getInstallationRequests().get(requestNumber).setState(newState,adminDashboard.getInstallationRequests().get(requestNumber));
+						adminDashboard.getInstallationRequests().get(requestNumber).setState(newState,
+								adminDashboard.getInstallationRequests().get(requestNumber));
 						System.out.println("Product Edited Successfully.\n");
 						break;
 					case 2:
@@ -367,46 +395,7 @@ public class App {
 
 	}
 
-	public static void viewAllProductsWithCategory() {
-		productIndex = 0;
-		for (ProductCategory category : productCatalog.getAllCategories()) {
-			System.out.println(category.getName());
-			System.out.println("------------------------------------");
-			for (Product product : category.getProducts()) {
-
-				System.out.println(productIndex + ". " + product.getName() + "   Price: " + product.getPrice()
-						+ "   Available: " + product.isAvailable());
-				productIndex++;
-			}
-			System.out.println();
-		}
-
-		while (true) {
-			System.out.println("1. Buy");
-			System.out.println("2. Back");
-			int select = scan.nextInt();
-			switch (select) {
-			case 1:
-				while (true) {
-					System.out.println("Enter product number:");
-					int productNumber = scan.nextInt();
-					if (productNumber > productIndex || productNumber < 1) {
-						System.out.println("Invalid selection! Please try again...");
-						break;
-					}
-
-				}
-
-				break;
-			case 2:
-				return;
-			default:
-				System.out.println("Invalid selection! Please try again...");
-				System.out.println();
-			}
-		}
-	}
-
+	
 	public static void customerActivities() {
 		String password;
 
@@ -424,16 +413,24 @@ public class App {
 			System.out.println("9. View Orders");
 			System.out.println("10. Sign Out");
 			System.out.println("\nPlease select an option:");
-			int select = scan.nextInt();
+			int select;
+
+			try {
+				select = scan.nextInt();
+			} catch (java.util.InputMismatchException e) {
+				System.out.println("Invalid input! Please enter a valid option.");
+				scan.nextLine();
+				return;
+			}
+
 			System.out.println();
 
 			switch (select) {
 			case 1:
 				productCatalog.printCatalog();
-				// search for product by name or description
+
 				System.out.println("Enter Search Key: ");
 				String searchKey = scan.next();
-				// array of products
 				List<Product> productsSearch = adminDashboard.searchProduct(searchKey);
 				int i = 0;
 				for (Product product : productsSearch) {
@@ -444,86 +441,70 @@ public class App {
 				}
 				break;
 			case 2:
-				ArrayList<Product> products = new ArrayList<>();
+			    ArrayList<Product> products = new ArrayList<>();
+
+			    productCatalog.printCatalog();
+			    System.out.println("Enter Car Details: ");
+			    String carDetails = scan.next();
+
+			    System.out.println("Enter Date dd-MM-yyyy");
+			    String date = scan.next();
+			    System.out.println("Enter Time HH:mm");
+			    String time = scan.next();
+			    date += " " + time;
+
+			    boolean addingProducts = true;
+			    while (addingProducts) {
+			        productCatalog.printCategories();
+			        System.out.println("Choose Category:");
+			        int categoryIndex = scan.nextInt();
+
+			        if (categoryIndex < 0 || categoryIndex >= productCatalog.getAllCategories().size()) {
+			            System.out.println("Invalid selection! Please try again...");
+			            continue;
+			        }
+
+			        ProductCategory selectedCategory = productCatalog.getAllCategories().get(categoryIndex);
+			        selectedCategory.printProducts();
+			        System.out.println("Choose Product:");
+			        int productIndex = scan.nextInt();
+
+			        if (productIndex < 0 || productIndex >= selectedCategory.getAllProducts().size()) {
+			            System.out.println("Invalid selection! Please try again...");
+			            continue;
+			        }
+
+			        Product selectedProduct = selectedCategory.getAllProducts().get(productIndex);
+			        if(selectedProduct.isAvailable()) {
+			        	products.add(selectedProduct);
+			        System.out.println("Product Added Successfully.\n");
+			        }else
+			        	System.out.println("Product is not available.\n");
+			        
+
+			        System.out.println("1. Add Another Product");
+			        System.out.println("2. Done");
+			        System.out.println("3. Back");
+			        int select2 = scan.nextInt();
+
+			        switch (select2) {
+			            case 1:
+			                break;
+			            case 2:
+			                adminDashboard.addInstallationRequest(new InstallationRequest(date, (Customer) user, products, carDetails));
+			                System.out.println("Installation Request Added Successfully.\n");
+			                addingProducts = false;
+			                break;
+			            case 3:
+			                return;
+			            default:
+			                System.out.println("Invalid selection! Please try again...");
+			                break;
+			        }
+			    }
+			    break;
 
 
-				productCatalog.printCatalog();
-				System.out.println("Enter Car Details: ");
-				String carDetails = scan.next();
-				
-				System.out.println("Enter Date dd-MM-yyyy");
-				String date = scan.next(); 
-				System.out.println("Enter Time HH:mm");
-				String time = scan.next();
-				date+=" "+time;
-				// choose many products
-				while (true) {
-					productCatalog.printCategories();
-					System.out.println("Choose Category:");
-					categoryIndex = scan.nextInt();
-					if (productCatalog.getAllCategories().size() > (categoryIndex + 1) && categoryIndex >= 0) {
-						productCatalog.getAllCategories().get(categoryIndex).printProducts();
-						System.out.println("Choose Product:");
-						productIndex = scan.nextInt();
-						if (productCatalog.getAllCategories().get(categoryIndex).getAllProducts()
-								.size() > (productIndex + 1) && productIndex >= 0) {
-
-							products.add(productCatalog.getAllCategories().get(categoryIndex).getAllProducts()
-									.get(productIndex));
-							System.out.println("Product Added Successfully.\n");
-							// switch , add another product or back
-							System.out.println("1. Add Another Product");
-							System.out.println("2. Done");
-							System.out.println("3. Back");
-							int select2 = scan.nextInt();
-							switch (select2) {
-
-							case 1:
-								productCatalog.printCategories();
-								System.out.println("Choose Category:");
-								categoryIndex = scan.nextInt();
-								if (productCatalog.getAllCategories().size() > (categoryIndex + 1)
-										&& categoryIndex >= 0) {
-									productCatalog.getAllCategories().get(categoryIndex).printProducts();
-									System.out.println("Choose Product:");
-									productIndex = scan.nextInt();
-									if (productCatalog.getAllCategories().get(categoryIndex).getAllProducts()
-											.size() > (productIndex + 1) && productIndex >= 0) {
-										products.add(productCatalog.getAllCategories().get(categoryIndex)
-												.getAllProducts().get(productIndex));
-										System.out.println("Product Added Successfully.\n");
-										break;
-									} else {
-										System.out.println("Invalid selection! Please try again...");
-										break;
-									}
-								} else {
-									System.out.println("Invalid selection! Please try again...");
-
-								}
-								break;
-							case 2:
-								adminDashboard.addInstallationRequest(
-										new InstallationRequest(date, (Customer) user, products, carDetails));
-								System.out.println("Installation Request Added Successfully.\n");
-								break;
-							case 3:
-
-								return;
-							}
-
-						} else {
-							System.out.println("Invalid selection! Please try again...");
-							break;
-						}
-					} else {
-						System.out.println("Invalid selection! Please try again...");
-						break;
-					}
-
-				}
-
-				break;
 			case 3:
 				adminDashboard.printInstallationRequest(user);
 
@@ -539,11 +520,11 @@ public class App {
 						// change state
 						System.out.println("Enter New State:");
 						String newState = scan.next();
-						adminDashboard.getInstallationRequests().get(requestNumber).setState(newState,adminDashboard.getInstallationRequests().get(requestNumber));
+						adminDashboard.getInstallationRequests().get(requestNumber).setState(newState,
+								adminDashboard.getInstallationRequests().get(requestNumber));
 						System.out.println("Product Edited Successfully.\n");
 						break;
 					case 2:
-						// sure to delete
 						System.out.println("Are you sure you want to delete this request? (Y/N)");
 						String sure = scan.next();
 						if (sure.equalsIgnoreCase("Y")) {
@@ -631,7 +612,7 @@ public class App {
 				adminDashboard.printInstallationRequest(user);
 				break;
 			case 9:
-					adminDashboard.printCompletedInstallationRequest(user);
+				adminDashboard.printCompletedInstallationRequest(user);
 				break;
 			case 10:
 				System.out.println("Logged Out...\n");
@@ -645,6 +626,8 @@ public class App {
 		}
 	}
 
+	
+	
 	public static void installerActivities() {
 		String password;
 
@@ -661,7 +644,16 @@ public class App {
 			System.out.println("8. Change Availability");
 			System.out.println("9. Sign Out");
 			System.out.println("\nPlease select an option:");
-			int select = scan.nextInt();
+			int select;
+
+			try {
+				select = scan.nextInt();
+			} catch (java.util.InputMismatchException e) {
+				System.out.println("Invalid input! Please enter a valid option.");
+				scan.nextLine();
+				return;
+			}
+
 			System.out.println();
 
 			switch (select) {
@@ -682,7 +674,8 @@ public class App {
 						// change state
 						System.out.println("Enter New State:");
 						String newState = scan.next();
-						adminDashboard.getInstallationRequests().get(requestNumber).setState(newState,adminDashboard.getInstallationRequests().get(requestNumber));
+						adminDashboard.getInstallationRequests().get(requestNumber).setState(newState,
+								adminDashboard.getInstallationRequests().get(requestNumber));
 						adminDashboard.getInstallationRequests().get(requestNumber).setInstaller((Installer) user);
 						System.out.println("Product Edited Successfully.\n");
 						break;

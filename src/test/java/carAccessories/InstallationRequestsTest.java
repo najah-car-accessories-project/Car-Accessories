@@ -16,9 +16,9 @@ public class InstallationRequestsTest {
 
 	public InstallationRequestsTest() {
 		
-		installer = new Installer("ahmad@gmail.com", "ahmad2000", "Installer");
-		customer = new Customer("haya@gmail.com", "drhaya9999", "Customer");
-		customer.signIn("haya@gmail.com", "drhaya9999");
+		installer = new Installer("majdbasem6@gmail.com", "majd2000", "Installer");
+		customer = new Customer("mohammadbadawi01@gmail.com", "mohammadbadawi2001", "Customer");
+		customer.signIn("mohammadbadawi01@gmail.com", "mohammadbadawi2001");
 		
 		
 		installationRequest = new InstallationRequest("10-12-2023 02:00", customer, null, "Toyota Corolla");
@@ -26,7 +26,7 @@ public class InstallationRequestsTest {
 		installationRequestList.add(installationRequest);
 		installationRequestList.add(new InstallationRequest("11-12-2023 02:00", customer, null, "BMW"));
 
-		admin = new Admin("mohammadbadawi@gmail.com", "mohammadbadawi2001", "Admin");
+		admin = new Admin("haya@gmail.com", "drhaya9999", "Admin");
 
 		Product product1 = new Product("JPL", "Car Audio, 3000 wat", new ArrayList<String>(), 1000, true);
 		Product product2 = new Product("JBL", "Car Audio, 2000 wat", new ArrayList<String>(), 500, true);
@@ -53,7 +53,7 @@ public class InstallationRequestsTest {
 
 	@Given("an Admin is logged in")
 	public void an_admin_is_logged_in() {
-		admin.signIn("mohammadbadawi@gmail.com", "mohammadbadawi2001");
+		admin.signIn("haya@gmail.com", "drhaya9999");
 		assertTrue(admin.isSignedIn());
 	}
 
@@ -83,7 +83,7 @@ public class InstallationRequestsTest {
 
 	@Given("an Installer is logged in")
 	public void an_installer_is_logged_in() {
-		installer.signIn("ahmad@gmail.com", "ahmad2000");
+		installer.signIn("majdbasem6@gmail.com", "majd2000");
 		assertTrue(installer.isSignedIn());
 	}
 

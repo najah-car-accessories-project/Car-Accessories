@@ -1,67 +1,99 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.najah.edu</groupId>
-  <artifactId>carAccessories</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>carAccessories</name>
-  
-  <dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.najah.edu</groupId>
+	<artifactId>carAccessories</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>carAccessories</name>
+	<properties>
+		<sonar.organization>najah-car-accessories-project</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+	</properties>
+	<dependencies>
+		<!-- Other dependencies should be here -->
 
-
-<dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>javax.mail-api</artifactId>
-            <version>1.6.2</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.activation</groupId>
-            <artifactId>activation</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.mail</groupId>
-            <artifactId>javax.mail</artifactId>
-            <version>1.6.2</version>
-        </dependency>
-
-
-		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<!-- Java Mail API -->
 		<dependency>
-		    <groupId>junit</groupId>
-		    <artifactId>junit</artifactId>
-		    <version>4.13</version>
-		    <scope>test</scope>
+			<groupId>javax.mail</groupId>
+			<artifactId>javax.mail-api</artifactId>
+			<version>1.6.2</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+		<!-- JavaBeans Activation Framework -->
 		<dependency>
-		    <groupId>io.cucumber</groupId>
-		    <artifactId>cucumber-java</artifactId>
-		    <version>7.14.0</version>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>1.1.1</version>
 		</dependency>
-		
+		<!-- Java Mail (com.sun.mail) -->
 		<dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-junit</artifactId>
-    <version>7.12.1</version>
-    <scope>test</scope>
-</dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		<!-- JUnit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Cucumber Java -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>7.14.0</version>
+		</dependency>
+		<!-- Cucumber JUnit -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>7.12.1</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Cucumber PicoContainer -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-picocontainer</artifactId>
+			<version>7.14.0</version>
+		</dependency>
+		<!-- Cucumber JUnit (duplicate dependency with different version
+		removed) -->
+	</dependencies>
 
-		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer -->
-<dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-picocontainer</artifactId>
-    <version>7.14.0</version>
-</dependency>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<!-- JUnit 5 requires Surefire version 2.22.0 or higher -->
+				<version>2.22.0</version>
+			</plugin>
 
-
-		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
-<dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-junit</artifactId>
-    <version>7.14.0</version>
-    <scope>test</scope>
-</dependency>
-
-
-  </dependencies>
+			<!-- JaCoCo plugin for code coverage -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.7</version>
+				<executions>
+					<!-- Prepares the property pointing to the JaCoCo runtime
+					agent -->
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<!-- Ensures that the code coverage report is created -->
+					<execution>
+						<id>generate-report</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Other plugins can be added here -->
+		</plugins>
+	</build>
 </project>

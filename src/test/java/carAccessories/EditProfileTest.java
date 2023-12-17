@@ -15,8 +15,8 @@ public class EditProfileTest {
 	String contactNumber;
 
 	public EditProfileTest() {
-		customer = new Customer("majd@gmail.com", "majd0567", "Customer", "0599364789");
-		customer.signIn("majd@gmail.com", "majd0567");
+		customer = new Customer("majdbasem6@gmail.com", "majd0567", "Customer", "0599364789");
+		customer.signIn("majdbasem6@gmail.com", "majd0567");
 	}
 
 	@Given("the Customer is logged in")

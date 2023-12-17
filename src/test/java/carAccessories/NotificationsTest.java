@@ -17,7 +17,7 @@ public class NotificationsTest {
 	private Installer installer;
 
 	public NotificationsTest() {
-		installer = new Installer("ahmad@gmail.com", "ahmad2000", "Installer");
+		installer = new Installer("majdbasem6@gmail.com","majd3000", "Installer");
 
 		Product product1 = new Product("JPL", "Car Audio, 3000 wat", new ArrayList<String>(), 1000, true);
 		Product product2 = new Product("JBL", "Car Audio, 2000 wat", new ArrayList<String>(), 500, true);
@@ -26,7 +26,7 @@ public class NotificationsTest {
 		productList.add(product1);
 		productList.add(product2);
 
-		customer = new Customer("haya@gmail.com", "drhaya9999", "Customer");
+		customer = new Customer("mohammadbadawi01@gmail.com", "badawi2000", "Customer");
 		installationRequest = new InstallationRequest("10-12-2023 02:00", customer, productList, "Toyota Corolla");
 
 	}
@@ -48,7 +48,7 @@ public class NotificationsTest {
 
 	@Given("an installer is  in the system")
 	public void an_installer_is_in_the_system() {
-		installer.signIn("ahmad@gmail.com", "ahmad2000");
+		installer.signIn("majdbasem6@gmail.com","majd3000");
 		assertTrue(installer.isSignedIn());
 	}
 

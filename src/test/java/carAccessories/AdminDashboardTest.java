@@ -17,11 +17,12 @@ public class AdminDashboardTest {
 	ProductCategory productCategory;
 	Admin admin;
 	public AdminDashboardTest() {
+		
 		adminDashboard = new AdminDashboard();
-		admin = new Admin("mohammadbadawi@gmail.com", "mohammadbadawi2001", "Admin");
-		adminDashboard.addUser(new Customer("haya@gmail.com", "drhaya9999", "Customer"));
+		admin = new Admin("haya@gmail.com", "drhaya9999", "Admin");
+		adminDashboard.addUser(new Customer("mohammadbadawi01@gmail.com", "mohammadbadawi2001", "Customer"));
 		adminDashboard.addUser(admin);
-		adminDashboard.addUser(new Customer("majd@gmail.com", "majd0567", "Installer"));
+		adminDashboard.addUser(new Customer("majdbasem6@gmail.com", "majd0567", "Installer"));
 		productCatalog = new ProductCatalog();
 
 		ProductCategory carAudio = new ProductCategory("Car Audio");
@@ -40,8 +41,8 @@ public class AdminDashboardTest {
 		productCatalog.addCategory(carSecurity);
 
 		InstallationRequest installationRequest1 = new InstallationRequest("10-12-2023",
-				new Installer("majd@gmail.com", "majd0567", "Installer"),
-				new Customer("haya@gmail.com", "drhaya9999", "Customer"), carAudio.getAllProducts(),
+				new Installer("majdbasem6@gmail.com", "majd0567", "Installer"),
+				new Customer("mohammadbadawi01@gmail.com", "mohammadbadawi2001", "Customer"), carAudio.getAllProducts(),
 				"M8 twin terbo stage 3");
 
 		adminDashboard.addInstallationRequest(installationRequest1);
@@ -52,20 +53,17 @@ public class AdminDashboardTest {
 
 @Given("the Admin is signed in")
 public void the_admin_is_signed_in() {
-    // Write code here that turns the phrase above into concrete actions
-    int index  = adminDashboard.authenticateUser("mohammadbadawi@gmail.com", "mohammadbadawi2001");
+    int index  = adminDashboard.authenticateUser("mohammadbadawi01@gmail.com", "mohammadbadawi2001");
     assertNotEquals(-1, index);
 }
 
 @Given("they navigate to the {string} section")
 public void they_navigate_to_the_section(String string) {
-    // Write code here that turns the phrase above into concrete actions
     assertNotNull(adminDashboard);
 }
 
 @Then("they have options to Add a product category")
 public void they_have_options_to_add_a_product_category() {
-    // Write code here that turns the phrase above into concrete actions
     adminDashboard.getProductCatalogs().get(0).addCategory(new ProductCategory("Car Accessories"));
 }
 	
