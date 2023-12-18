@@ -15,18 +15,107 @@ public class App {
 	static int categoryIndex = 0;
 	static int productIndex = 0;
 	private static Users user;
+	final static String invalidInputMsg  = "Invalid input! Please enter a valid option.";
 
+	
 	public static void main(String[] args) {
 
 		init();
+		
 
 		while (true) {
-			gest();
+			String new_pass;
+			System.out.println("================================================================================");
+			System.out.println("\t\tWelcome to Car Accessories Store");
+			System.out.println("1. Sign In");
+			System.out.println("2. Sign Up");
+			System.out.println("3. Exit");
+			System.out.println("\nPlease select an option:");
+
+			int select;
+
+			try {
+				select = scan.nextInt();
+			} catch (java.util.InputMismatchException e) {
+				System.out.println(invalidInputMsg);
+				scan.nextLine();
+				return;
+			}
+
+			switch (select) {
+			case 1:
+				System.out.println("Enter Username:");
+				email = scan.next();
+
+				System.out.println("Enter Password:");
+				password = scan.next();
+
+				userIndex = adminDashboard.authenticateUser(email, password);
+
+				if (userIndex == -1) {
+					System.out.println("Invalid Credentials! Please try again...\n");
+					return;
+
+				}
+
+				user = adminDashboard.getUsers().get(userIndex);
+
+				if (user.checkRole("Admin"))
+					adminDashboardActivities();
+				else if (user.checkRole("Customer"))
+					customerActivities();
+				else if (user.checkRole("Installer"))
+					installerActivities();
+
+				break;
+
+			case 2:
+
+				System.out.println("Enter Email:");
+				email = scan.next();
+				System.out.println("Enter Password:");
+				password = scan.next();
+				System.out.println("Reenter Password:");
+				new_pass = scan.next();
+
+				if (!password.equals(new_pass)) {
+					System.out.println("Password doesn't match! Please try again...");
+					System.out.println();
+					return;
+				}
+
+				boolean isValid = adminDashboard.addUser(new Customer(email, password, "Customer"));
+
+				if (isValid) {
+					System.out.println("Account Created Successfully!");
+					userIndex = adminDashboard.authenticateUser(email, password);
+
+					if (userIndex == -1) {
+						System.out.println("Invalid Credentials! Please try again...\n");
+						return;
+					}
+
+					user = adminDashboard.getUsers().get(userIndex);
+
+					customerActivities();
+
+				} else
+					System.out.println("Account Creation Failed! Please try again...");
+				break;
+
+			case 3:
+				System.out.println("Logged Out...\n");
+				System.exit(0);
+
+			default:
+				System.out.println("Invalid selection! Please try again...");
+				System.out.println();
+			}
 		}
 	}
 
 	public static void init() {
-
+		
 		adminDashboard = new AdminDashboard();
 		adminDashboard.addUser(new Customer("majdbasem6@gmail.com", "majd123", "Customer"));
 		adminDashboard.addUser(new Admin("drhaya@gmail.com", "drhaya01", "Admin"));
@@ -65,95 +154,6 @@ public class App {
 		adminDashboard.addProductCatalog(productCatalog);
 	}
 
-	public static void gest() {
-		String new_pass;
-		System.out.println("================================================================================");
-		System.out.println("\t\tWelcome to Car Accessories Store");
-		System.out.println("1. Sign In");
-		System.out.println("2. Sign Up");
-		System.out.println("3. Exit");
-		System.out.println("\nPlease select an option:");
-
-		int select;
-
-		try {
-			select = scan.nextInt();
-		} catch (java.util.InputMismatchException e) {
-			System.out.println("Invalid input! Please enter a valid option.");
-			scan.nextLine();
-			return;
-		}
-
-		switch (select) {
-		case 1:
-			System.out.println("Enter Username:");
-			email = scan.next();
-
-			System.out.println("Enter Password:");
-			password = scan.next();
-
-			userIndex = adminDashboard.authenticateUser(email, password);
-
-			if (userIndex == -1) {
-				System.out.println("Invalid Credentials! Please try again...\n");
-				return;
-
-			}
-
-			user = adminDashboard.getUsers().get(userIndex);
-
-			if (user.checkRole("Admin"))
-				adminDashboardActivities();
-			else if (user.checkRole("Customer"))
-				customerActivities();
-			else if (user.checkRole("Installer"))
-				installerActivities();
-
-			break;
-
-		case 2:
-
-			System.out.println("Enter Email:");
-			email = scan.next();
-			System.out.println("Enter Password:");
-			password = scan.next();
-			System.out.println("Reenter Password:");
-			new_pass = scan.next();
-
-			if (!password.equals(new_pass)) {
-				System.out.println("Password doesn't match! Please try again...");
-				System.out.println();
-				return;
-			}
-
-			boolean isValid = adminDashboard.addUser(new Customer(email, password, "Customer"));
-
-			if (isValid) {
-				System.out.println("Account Created Successfully!");
-				userIndex = adminDashboard.authenticateUser(email, password);
-
-				if (userIndex == -1) {
-					System.out.println("Invalid Credentials! Please try again...\n");
-					return;
-				}
-
-				user = adminDashboard.getUsers().get(userIndex);
-
-				customerActivities();
-
-			} else
-				System.out.println("Account Creation Failed! Please try again...");
-			break;
-
-		case 3:
-			System.out.println("Logged Out...\n");
-			System.exit(0);
-
-		default:
-			System.out.println("Invalid selection! Please try again...");
-			System.out.println();
-		}
-	}
 
 	public static void adminDashboardActivities() {
 		while (true) {
@@ -180,7 +180,7 @@ public class App {
 			try {
 				select = scan.nextInt();
 			} catch (java.util.InputMismatchException e) {
-				System.out.println("Invalid input! Please enter a valid option.");
+				System.out.println(invalidInputMsg);
 				scan.nextLine();
 				return;
 			}
@@ -418,7 +418,7 @@ public class App {
 			try {
 				select = scan.nextInt();
 			} catch (java.util.InputMismatchException e) {
-				System.out.println("Invalid input! Please enter a valid option.");
+				System.out.println(invalidInputMsg);
 				scan.nextLine();
 				return;
 			}
@@ -649,7 +649,7 @@ public class App {
 			try {
 				select = scan.nextInt();
 			} catch (java.util.InputMismatchException e) {
-				System.out.println("Invalid input! Please enter a valid option.");
+				System.out.println(invalidInputMsg);
 				scan.nextLine();
 				return;
 			}

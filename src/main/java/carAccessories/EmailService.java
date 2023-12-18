@@ -48,8 +48,8 @@ public class EmailService {
     	            MimeMessage message = new MimeMessage(session);
     	            message.setFrom(new InternetAddress(from));
     	            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to,false));
-    	            message.setSubject(messageObject);
-    	            message.setText(messageBody);
+    	            message.setSubject("messageObject");
+    	            message.setText("messageBody");
 
     	            Transport.send(message);
     	            
