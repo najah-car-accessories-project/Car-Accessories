@@ -16,7 +16,7 @@ public class App {
 	static int productIndex = 0;
 	private static Users user;
 	final static String invalidInputMsg  = "Invalid input! Please enter a valid option.";
-
+	final static String hr = "================================================================================";
 	
 	public static void main(String[] args) {
 
@@ -25,7 +25,7 @@ public class App {
 
 		while (true) {
 			String new_pass;
-			System.out.println("================================================================================");
+			System.out.println(hr);
 			System.out.println("\t\tWelcome to Car Accessories Store");
 			System.out.println("1. Sign In");
 			System.out.println("2. Sign Up");
@@ -119,7 +119,6 @@ public class App {
 		adminDashboard = new AdminDashboard();
 		adminDashboard.addUser(new Customer("majdbasem6@gmail.com", "majd123", "Customer"));
 		adminDashboard.addUser(new Admin("drhaya@gmail.com", "drhaya01", "Admin"));
-//		adminDashboard.addUser(new Customer("majd@gmail.com", "majd0567", "Customer"));
 		adminDashboard.addUser(new Installer("mohammadbadawi01@gmail.com", "badawi01", "Installer"));
 		
 		productCatalog = new ProductCatalog();
@@ -158,7 +157,7 @@ public class App {
 	public static void adminDashboardActivities() {
 		while (true) {
 			System.out.println("\t\tWelcome " + user.email + " - Signed In as Admin");
-			System.out.println("================================================================================");
+			System.out.println(hr);
 			System.out.println("1. Add Product");
 			System.out.println("2. Edit Or Delete Product");
 			System.out.println("3. View Products");
@@ -321,12 +320,7 @@ public class App {
 					int select2 = scan.nextInt();
 					switch (select2) {
 					case 1:
-//						System.out.println("Enter New Email:");
-//						String newEmail = scan.next();
-//						System.out.println("Enter New Contact Number:");
-//						String newContactNumber = scan.next();
-//						System.out.println("Enter New Password:");
-//						String newPassword = scan.next();
+
 						System.out.println("Enter New Role:");
 						String newRole = scan.next();
 
@@ -347,7 +341,6 @@ public class App {
 
 				break;
 			case 10:
-				// view installation requests
 
 				adminDashboard.printInstallationRequests();
 				System.out.println("Enter Request number:");
@@ -401,7 +394,7 @@ public class App {
 
 		while (true) {
 			System.out.println("\t\tWelcome " + user.email + " - Signed In as Customer");
-			System.out.println("================================================================================");
+			System.out.println(hr);
 			System.out.println("1. View Products <Search>");
 			System.out.println("2. Add Installation Request <View Products>");
 			System.out.println("3. Edit or Delete Installation Request");
@@ -633,7 +626,7 @@ public class App {
 
 		while (true) {
 			System.out.println("\t\tWelcome " + user.getEmail() + " - Signed In as Installer");
-			System.out.println("================================================================================");
+			System.out.println(hr);
 			System.out.println("1. View Installation Requests");
 			System.out.println("2. Edit Or Delete Installation Appointment");
 			System.out.println("3. Change Email");

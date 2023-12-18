@@ -146,7 +146,12 @@ public class Users {
         Users other = (Users) o;
         return (this.email.equals(other.email) && this.password.equals(other.password) && this.role.equals(other.role));
     }
-	
+	@Override
+	  public int hashCode() {
+	   return 0;
+	    }
+
+
 
 
 }
