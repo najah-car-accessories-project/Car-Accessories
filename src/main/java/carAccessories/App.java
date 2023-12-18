@@ -18,6 +18,8 @@ public class App {
 	static int productIndex = 0;
 	private static Users user;
 	final static String invalidInputMsg  = "Invalid input! Please enter a valid option.";
+	final static String invalidSelectionMsq = "Invalid selection! Please try again...";
+	final static String  logoutMsq =  "Logged Out...\n";
 	final static String hr = "================================================================================";
 	
 	public static void main(String[] args) {
@@ -106,11 +108,11 @@ public class App {
 				break;
 
 			case 3:
-				logger.info("Logged Out...\n");
+				logger.info(logoutMsq);
 				System.exit(0);
 
 			default:
-				logger.info("Invalid selection! Please try again...");
+				logger.info(invalidSelectionMsq);
 				logger.info("\n");
 			}
 		}
@@ -249,14 +251,14 @@ public class App {
 							logger.info("Product Deleted Successfully.\n");
 							break;
 						default:
-							logger.info("Invalid selection! Please try again...");
+							logger.info(invalidSelectionMsq);
 							logger.info("\n");
 						}
 					} else {
-						logger.info("Invalid selection! Please try again...");
+						logger.info(invalidSelectionMsq);
 					}
 				} else
-					logger.info("Invalid selection! Please try again...");
+					logger.info(invalidSelectionMsq);
 				break;
 
 			case 3:
@@ -289,7 +291,7 @@ public class App {
 					productCatalog.updateCategory(newCategory2);
 					logger.info("Category Edited Successfully.\n");
 				} else
-					logger.info("Invalid selection! Please try again...");
+					logger.info(invalidSelectionMsq);
 				break;
 			case 6:
 				productCatalog.printCategories();
@@ -300,7 +302,7 @@ public class App {
 					logger.info("Category Deleted Successfully.\n");
 				} else
 
-					logger.info("Invalid selection! Please try again...");
+					logger.info(invalidSelectionMsq);
 
 				break;
 			case 7:
@@ -334,11 +336,11 @@ public class App {
 						logger.info("User Deleted Successfully.\n");
 						break;
 					default:
-						logger.info("Invalid selection! Please try again...");
+						logger.info(invalidSelectionMsq);
 						logger.info("\n");
 					}
 				} else {
-					logger.info("Invalid selection! Please try again...");
+					logger.info(invalidSelectionMsq);
 				}
 
 				break;
@@ -373,16 +375,16 @@ public class App {
 						}
 						break;
 					default:
-						logger.info("Invalid selection! Please try again...");
+						logger.info(invalidSelectionMsq);
 						logger.info("\n");
 					}
 
 				} else {
-					logger.info("Invalid selection! Please try again...");
+					logger.info(invalidSelectionMsq);
 				}
 				break;
 			case 11:
-				logger.info("Logged Out...\n");
+				logger.info(logoutMsq);
 				return;
 			}
 
@@ -431,7 +433,7 @@ public class App {
 				for (Product product : productsSearch) {
 					logger.info(i + ". ");
 					product.print();
-					logger.info("---------------------------------------------------");
+					logger.info(hr);
 					i++;
 				}
 				break;
@@ -455,7 +457,7 @@ public class App {
 			        int categoryIndex = scan.nextInt();
 
 			        if (categoryIndex < 0 || categoryIndex >= productCatalog.getAllCategories().size()) {
-			            logger.info("Invalid selection! Please try again...");
+			            logger.info(invalidSelectionMsq);
 			            continue;
 			        }
 
@@ -465,7 +467,7 @@ public class App {
 			        int productIndex = scan.nextInt();
 
 			        if (productIndex < 0 || productIndex >= selectedCategory.getAllProducts().size()) {
-			            logger.info("Invalid selection! Please try again...");
+			            logger.info(invalidSelectionMsq);
 			            continue;
 			        }
 
@@ -493,7 +495,7 @@ public class App {
 			            case 3:
 			                return;
 			            default:
-			                logger.info("Invalid selection! Please try again...");
+			                logger.info(invalidSelectionMsq);
 			                break;
 			        }
 			    }
@@ -530,12 +532,12 @@ public class App {
 						}
 						break;
 					default:
-						logger.info("Invalid selection! Please try again...");
+						logger.info(invalidSelectionMsq);
 						logger.info("\n");
 					}
 
 				} else {
-					logger.info("Invalid selection! Please try again...");
+					logger.info(invalidSelectionMsq);
 				}
 				;
 				break;
@@ -610,12 +612,12 @@ public class App {
 				adminDashboard.printCompletedInstallationRequest(user);
 				break;
 			case 10:
-				logger.info("Logged Out...\n");
+				logger.info(logoutMsq);
 				scan.nextLine();
 				return;
 
 			default:
-				logger.info("Invalid selection! Please try again...");
+				logger.info(invalidSelectionMsq);
 				logger.info("\n");
 			}
 		}
@@ -686,11 +688,11 @@ public class App {
 						}
 						break;
 					default:
-						logger.info("Invalid selection! Please try again...");
+						logger.info(invalidSelectionMsq);
 						logger.info("\n");
 					}
 				} else {
-					logger.info("Invalid selection! Please try again...");
+					logger.info(invalidSelectionMsq);
 
 				}
 				break;
@@ -768,13 +770,13 @@ public class App {
 				else if (state.equalsIgnoreCase("n"))
 					newAvailability = false;
 				else {
-					logger.info("Invalid selection! Please try again...");
+					logger.info(invalidSelectionMsq);
 					break;
 				}
 				((Installer) user).setAvailability(newAvailability);
 				break;
 			case 9:
-				logger.info("Logged Out...\n");
+				logger.info(logoutMsq);
 				scan.nextLine();
 				return;
 			}
