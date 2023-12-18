@@ -9,7 +9,7 @@ public class AdminDashboard {
     private List<Users> users;
     private List<ProductCatalog> productCatalogs;
     private List<InstallationRequest> installationRequests;
-    
+    final String hr = "---------------------------------------------------";
     public AdminDashboard() {
         this.users = new ArrayList<>();
         this.productCatalogs = new ArrayList<>();
@@ -20,7 +20,7 @@ public class AdminDashboard {
 	}
 
 	void printCompletedInstallationRequests() {
-		System.out.println("---------------------------------------------------");
+		System.out.println(hr);
 
 		System.out.println("\t\t\t Completed Installation Requests: ");
 		int i = 0;
@@ -28,20 +28,20 @@ public class AdminDashboard {
 			if (installationRequest.getStats().equalsIgnoreCase("completed")) {
 				System.out.println(i + ". ");
 				installationRequest.print();
-				System.out.println("---------------------------------------------------");
+				System.out.println(hr);
 				i++;
 			}
 		}
 	}
 	void printInstallationRequests() {
-		System.out.println("---------------------------------------------------");
+		System.out.println(hr);
 
 		System.out.println("\t\t\t Installation Requests: ");
 		int i = 0;
 		for (InstallationRequest installationRequest : installationRequests) {
 			System.out.println(i + ". ");
 			installationRequest.print();
-			System.out.println("---------------------------------------------------");
+			System.out.println(hr);
 			
 			i++;
 		}
@@ -108,7 +108,7 @@ public class AdminDashboard {
 			if (installationRequest.getCustomer().getEmail().equals(user.getEmail())) {
 				System.out.println(i + ". ");
 				installationRequest.print();
-				System.out.println("---------------------------------------------------");
+				System.out.println(hr);
 				i++;
 			}
 		}
@@ -116,7 +116,7 @@ public class AdminDashboard {
 	}
 
 	public void printCompletedInstallationRequest(Users user) {
-		System.out.println("---------------------------------------------------");
+		System.out.println(hr);
 		System.out.println("\t\t\t Order Installation Requests: ");
 		int i = 0;
 		for (InstallationRequest installationRequest : installationRequests) {
@@ -124,7 +124,7 @@ public class AdminDashboard {
 				if (installationRequest.getStats().equalsIgnoreCase("completed")) {
 					System.out.println(i + ". ");
 					installationRequest.print();
-					System.out.println("---------------------------------------------------");
+					System.out.println(hr);
 					i++;
 				}
 			}
