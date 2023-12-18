@@ -28,7 +28,7 @@ public class EmailService {
     public void send(String to,String messageBody, String messageObject) {
     		
     			String from = "majdbasem6@gmail.com";
-    			String password = "vcdh hifz fgcl xmvj";
+    		    String password = System.getenv("EMAIL_PASSWORD");
     	
     	 
     	        try {
