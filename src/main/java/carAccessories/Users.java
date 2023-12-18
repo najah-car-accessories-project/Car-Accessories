@@ -132,7 +132,8 @@ public class Users {
     }
 
     public boolean isPasswordValid(String password) {
-        return password.length() >= 6 && password.matches(".*[a-zA-Z].*") && password.matches(".*\\d.*");
+    	String passwordMatcher = "(?=.*[a-zA-Z])(?=.*\\d).*";
+        return password.length() >= 6 && password.matches(passwordMatcher);
     }
     
     public boolean isValidContactNumber(String phoneNumber) {
