@@ -1,6 +1,7 @@
 package carAccessories;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Product {
     private String name;
@@ -54,10 +55,9 @@ public class Product {
 		this.name = name;
 	}
     
-	public ArrayList<String> getImages() {
+	public List<String> getImages() {
 		return images;
 	}
-	
     public boolean isAvailable() {
         return isAvailable;
     }
