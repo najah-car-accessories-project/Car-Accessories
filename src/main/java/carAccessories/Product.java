@@ -6,7 +6,7 @@ import java.util.List;
 public class Product {
     private String name;
     private String descriptions;
-    private ArrayList<String> images;
+    private List<String> images;
     private double price;
     private boolean isAvailable;
 
