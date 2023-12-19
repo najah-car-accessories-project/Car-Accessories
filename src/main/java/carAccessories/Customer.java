@@ -2,7 +2,6 @@ package carAccessories;
 
 
 public class Customer extends Users {
-//	String contactNumber;
 
 	public Customer(String email, String password, String role) {
 		super(email, password, role);

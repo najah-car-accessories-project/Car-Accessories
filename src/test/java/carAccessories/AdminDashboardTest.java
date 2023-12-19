@@ -16,13 +16,14 @@ public class AdminDashboardTest {
 	ProductCatalog productCatalog;
 	ProductCategory productCategory;
 	Admin admin;
+
 	public AdminDashboardTest() {
-		
+
 		adminDashboard = new AdminDashboard();
 		admin = new Admin("haya@gmail.com", "drhaya9999", "Admin");
 		adminDashboard.addUser(new Customer("mohammadbadawi01@gmail.com", "mohammadbadawi2001", "Customer"));
 		adminDashboard.addUser(admin);
-		adminDashboard.addUser(new Customer("majdbasem6@gmail.com", "majd0567", "Installer"));
+		adminDashboard.addUser(new Installer("majdbasem6@gmail.com", "majd0567", "Installer"));
 		productCatalog = new ProductCatalog();
 
 		ProductCategory carAudio = new ProductCategory("Car Audio");
@@ -50,23 +51,22 @@ public class AdminDashboardTest {
 		adminDashboard.addProductCatalog(productCatalog);
 	}
 
+	@Given("the Admin is signed in")
+	public void the_admin_is_signed_in() {
+		int index = adminDashboard.authenticateUser("mohammadbadawi01@gmail.com", "mohammadbadawi2001");
+		assertNotEquals(-1, index);
+	}
 
-@Given("the Admin is signed in")
-public void the_admin_is_signed_in() {
-    int index  = adminDashboard.authenticateUser("mohammadbadawi01@gmail.com", "mohammadbadawi2001");
-    assertNotEquals(-1, index);
-}
+	@Given("they navigate to the {string} section")
+	public void they_navigate_to_the_section(String string) {
+		assertNotNull(adminDashboard);
+	}
 
-@Given("they navigate to the {string} section")
-public void they_navigate_to_the_section(String string) {
-    assertNotNull(adminDashboard);
-}
+	@Then("they have options to Add a product category")
+	public void they_have_options_to_add_a_product_category() {
+		adminDashboard.getProductCatalogs().get(0).addCategory(new ProductCategory("Car Accessories"));
+	}
 
-@Then("they have options to Add a product category")
-public void they_have_options_to_add_a_product_category() {
-    adminDashboard.getProductCatalogs().get(0).addCategory(new ProductCategory("Car Accessories"));
-}
-	
 	@Then("they can view all product categories")
 	public void they_can_view_all_product_categories() {
 		assertEquals(2, adminDashboard.getProductCatalogs().get(0).getAllCategories().size());

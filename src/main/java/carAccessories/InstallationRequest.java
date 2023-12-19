@@ -26,15 +26,7 @@ public class InstallationRequest {
 		this.customer = customer;
 		this.products = products;
 		this.carDetails = carDetails;
-		this.state = "Pending";
-//		String messageBody = "New Installation Request has been placed on " + date;
-//		messageBody += "\nCar: " + carDetails;
-//		messageBody += "\nProducts: ";
-//		for (Product product : products) {
-//			messageBody += "\n" + product.getName();
-//		}
-//		emailService.newInstallationRequest(messageBody, customer.getEmail());
-		
+		this.state = "Pending";		
 	}
 
 	void print() {

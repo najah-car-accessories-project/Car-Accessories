@@ -19,7 +19,7 @@ public class Product {
 	            
 	}
  void print() {
-	 	System.out.println("Product Name: " + name + " - " + "Product Price: " + price + " - " + "Product Availability: " + (isAvailable ? "In Stock" : "Out Of Stock" ) + " - "  + "Product Description: " + descriptions);
+	 	System.out.println("Product Name: " + name + " - " + "Product Price: " + price + " ILS - " + "Product Availability: " + (isAvailable ? "In Stock" : "Out Of Stock" ) + " - "  + "Product Description: " + descriptions);
  }
 
 	public Product(String name, String descriptions, ArrayList<String> images, double price,

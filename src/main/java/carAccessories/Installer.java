@@ -16,5 +16,9 @@ public class Installer extends Users {
 		isInstallerAvailable = b;
 	}
 
+	public boolean getAvailability() {
+		return isInstallerAvailable;
+	}
+
 	
 }

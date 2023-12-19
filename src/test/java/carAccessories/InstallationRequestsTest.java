@@ -15,25 +15,28 @@ public class InstallationRequestsTest {
 	private List<InstallationRequest> installationRequestList;
 
 	public InstallationRequestsTest() {
-		
-		installer = new Installer("majdbasem6@gmail.com", "majd2000", "Installer");
-		customer = new Customer("mohammadbadawi01@gmail.com", "mohammadbadawi2001", "Customer");
-		customer.signIn("mohammadbadawi01@gmail.com", "mohammadbadawi2001");
-		
-		
-		installationRequest = new InstallationRequest("10-12-2023 02:00", customer, null, "Toyota Corolla");
-		installationRequestList = new ArrayList<InstallationRequest>();
-		installationRequestList.add(installationRequest);
-		installationRequestList.add(new InstallationRequest("11-12-2023 02:00", customer, null, "BMW"));
-
-		admin = new Admin("haya@gmail.com", "drhaya9999", "Admin");
-
 		Product product1 = new Product("JPL", "Car Audio, 3000 wat", new ArrayList<String>(), 1000, true);
 		Product product2 = new Product("JBL", "Car Audio, 2000 wat", new ArrayList<String>(), 500, true);
 
 		productList = new ArrayList<Product>();
 		productList.add(product1);
 		productList.add(product2);
+		
+		
+		installer = new Installer("majdbasem6@gmail.com", "majd2000", "Installer");
+		customer = new Customer("mohammadbadawi01@gmail.com", "mohammadbadawi2001", "Customer");
+		customer.signIn("mohammadbadawi01@gmail.com", "mohammadbadawi2001");
+		
+		
+		installationRequest = new InstallationRequest("10-12-2023 02:00", customer, productList , "Toyota Corolla");
+		installationRequestList = new ArrayList<InstallationRequest>();
+		installationRequestList.add(installationRequest);
+		installationRequestList.add(new InstallationRequest("11-12-2023 02:00", customer,productList, "BMW"));
+
+		admin = new Admin("haya@gmail.com", "drhaya9999", "Admin");
+
+	
+		
 	}
 
 	@Given("a Customer is logged in")
