@@ -13,7 +13,7 @@
 		<maven.compiler.target>17</maven.compiler.target>
 		<sonar.organization>najah-car-accessories-project</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.exclusions>src/main/java/carAccessories/App.js</sonar.exclusions>
+		<sonar.exclusions>**/carAccessories/App.js</sonar.exclusions>
 	</properties>
 
 
