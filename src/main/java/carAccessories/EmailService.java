@@ -30,7 +30,6 @@ public class EmailService {
 
 		String from = "majdbasem6@gmail.com";
 		String password = System.getenv("EMAIL_PASSWORD"); 
-		System.out.println(password);
 		try {
 			Properties properties = System.getProperties();
 			properties.put("mail.smtp.host", "smtp.gmail.com");

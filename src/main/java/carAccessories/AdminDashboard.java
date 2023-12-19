@@ -2,6 +2,7 @@ package carAccessories;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AdminDashboard {
@@ -25,12 +26,11 @@ public class AdminDashboard {
 
 	void printCompletedInstallationRequests() {
 		LOGGER.fine(HORIZONTAL_HR);
-
 		LOGGER.fine("\t\t\t Completed Installation Requests: ");
 		int i = 0;
 		for (InstallationRequest installationRequest : installationRequests) {
-			if (installationRequest.getStats().equalsIgnoreCase("completed")) {
-				LOGGER.fine(i + ". ");
+			if ("completed".equalsIgnoreCase(installationRequest.getStats())) {
+				LOGGER.log(Level.FINE, "{0}. ", new Object[] { i });
 				installationRequest.print();
 				LOGGER.fine(HORIZONTAL_HR);
 				i++;
@@ -40,14 +40,12 @@ public class AdminDashboard {
 
 	void printInstallationRequests() {
 		LOGGER.fine(HORIZONTAL_HR);
-
 		LOGGER.fine("\t\t\t Installation Requests: ");
 		int i = 0;
 		for (InstallationRequest installationRequest : installationRequests) {
-			LOGGER.fine(i + ". ");
+			LOGGER.log(Level.FINE, "{0}. ", new Object[] { i });
 			installationRequest.print();
 			LOGGER.fine(HORIZONTAL_HR);
-
 			i++;
 		}
 	}
@@ -76,10 +74,10 @@ public class AdminDashboard {
 	void printUsers() {
 		int i = 0;
 		for (Users user : users) {
-			LOGGER.fine(i + ". " + user.getEmail() + " - " + user.getContactNumber() + " - " + user.getRole());
+			LOGGER.log(Level.FINE, "{0}. {1} - {2} - {3}",
+					new Object[] { i, user.getEmail(), user.getContactNumber(), user.getRole() });
 			i++;
 		}
-
 	}
 
 	public int getTotalNumberOfUsers() {
@@ -98,18 +96,19 @@ public class AdminDashboard {
 		productCatalogs.add(catalog);
 	}
 
-	void addInstallationRequest(InstallationRequest installationRequest) {
+	public void addInstallationRequest(InstallationRequest installationRequest) {
 		installationRequests.add(installationRequest);
 
-		String messageBody = "New Installation Request has been placed on " + installationRequest.getInstallationDate()
-				+ "\nCustomer Details: ";
-		messageBody += "\nCar: " + installationRequest.getCarDetails();
-		messageBody += "\nProducts: ";
+		StringBuilder messageBody = new StringBuilder();
+		messageBody.append("New Installation Request has been placed on ")
+				.append(installationRequest.getInstallationDate()).append("\nCustomer Details: ").append("\nCar: ")
+				.append(installationRequest.getCarDetails()).append("\nProducts: ");
 
 		for (Product product : installationRequest.getProducts()) {
-			messageBody += "\n" + product.getName()+ ", " + product.getDescriptions();
+			messageBody.append("\n").append(product.getName()).append(", ").append(product.getDescriptions());
 		}
-		emailService.newInstallationRequest(messageBody, getAvailableInstaller().getEmail());
+
+		emailService.newInstallationRequest(messageBody.toString(), getAvailableInstaller().getEmail());
 	}
 
 	public Installer getAvailableInstaller() {
@@ -132,13 +131,12 @@ public class AdminDashboard {
 		int i = 0;
 		for (InstallationRequest installationRequest : installationRequests) {
 			if (installationRequest.getCustomer().getEmail().equals(user.getEmail())) {
-				LOGGER.fine(i + ". ");
+				LOGGER.log(Level.FINE, "{0}. ", new Object[] { i });
 				installationRequest.print();
 				LOGGER.fine(HORIZONTAL_HR);
 				i++;
 			}
 		}
-
 	}
 
 	public void printCompletedInstallationRequest(Users user) {
@@ -146,16 +144,14 @@ public class AdminDashboard {
 		LOGGER.fine("\t\t\t Order Installation Requests: ");
 		int i = 0;
 		for (InstallationRequest installationRequest : installationRequests) {
-			if (installationRequest.getCustomer().getEmail().equals(user.getEmail())) {
-				if (installationRequest.getStats().equalsIgnoreCase("completed")) {
-					LOGGER.fine(i + ". ");
-					installationRequest.print();
-					LOGGER.fine(HORIZONTAL_HR);
-					i++;
-				}
+			if (installationRequest.getCustomer().getEmail().equals(user.getEmail())
+					&& "completed".equalsIgnoreCase(installationRequest.getStats())) {
+				LOGGER.log(Level.FINE, "{0}. ", new Object[] { i });
+				installationRequest.print();
+				LOGGER.fine(HORIZONTAL_HR);
+				i++;
 			}
 		}
-
 	}
 
 	public List<Product> searchProduct(String searchKey) {
