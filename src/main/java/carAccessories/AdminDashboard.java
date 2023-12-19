@@ -13,6 +13,8 @@ public class AdminDashboard {
 	private static final String HORIZONTAL_HR = "--------------------------------";
 	private static final Logger LOGGER = Logger.getLogger(AdminDashboard.class.getName());
 	private EmailService emailService = new EmailService();
+	private static final String INDEX_FORMAT = "{0}. ";
+
 
 	public AdminDashboard() {
 		this.users = new ArrayList<>();
@@ -30,7 +32,7 @@ public class AdminDashboard {
 		int i = 0;
 		for (InstallationRequest installationRequest : installationRequests) {
 			if ("completed".equalsIgnoreCase(installationRequest.getStats())) {
-				LOGGER.log(Level.FINE, "{0}. ", new Object[] { i });
+				LOGGER.log(Level.FINE, INDEX_FORMAT, new Object[] { i });
 				installationRequest.print();
 				LOGGER.fine(HORIZONTAL_HR);
 				i++;
@@ -43,7 +45,7 @@ public class AdminDashboard {
 		LOGGER.fine("\t\t\t Installation Requests: ");
 		int i = 0;
 		for (InstallationRequest installationRequest : installationRequests) {
-			LOGGER.log(Level.FINE, "{0}. ", new Object[] { i });
+			LOGGER.log(Level.FINE, INDEX_FORMAT, new Object[] { i });
 			installationRequest.print();
 			LOGGER.fine(HORIZONTAL_HR);
 			i++;
@@ -131,7 +133,7 @@ public class AdminDashboard {
 		int i = 0;
 		for (InstallationRequest installationRequest : installationRequests) {
 			if (installationRequest.getCustomer().getEmail().equals(user.getEmail())) {
-				LOGGER.log(Level.FINE, "{0}. ", new Object[] { i });
+				LOGGER.log(Level.FINE, INDEX_FORMAT, new Object[] { i });
 				installationRequest.print();
 				LOGGER.fine(HORIZONTAL_HR);
 				i++;
@@ -146,7 +148,7 @@ public class AdminDashboard {
 		for (InstallationRequest installationRequest : installationRequests) {
 			if (installationRequest.getCustomer().getEmail().equals(user.getEmail())
 					&& "completed".equalsIgnoreCase(installationRequest.getStats())) {
-				LOGGER.log(Level.FINE, "{0}. ", new Object[] { i });
+				LOGGER.log(Level.FINE, INDEX_FORMAT, new Object[] { i });
 				installationRequest.print();
 				LOGGER.fine(HORIZONTAL_HR);
 				i++;
