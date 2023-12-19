@@ -12,7 +12,7 @@ public class Product {
 	public Product() {
 		this.name = "";
 		this.descriptions = "";
-	    this.images = new ArrayList<String>();
+		this.images = new ArrayList<>();
 	     this.price = 0.0;
 	     this.isAvailable = false;
 	            
@@ -54,8 +54,10 @@ public class Product {
 		this.name = name;
 	}
     
-
-    
+	public ArrayList<String> getImages() {
+		return images;
+	}
+	
     public boolean isAvailable() {
         return isAvailable;
     }
