@@ -1,6 +1,8 @@
 package carAccessories;
 
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -10,7 +12,9 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+
 public class EmailService {
+	Logger logger = Logger.getLogger(EmailService.class.getName());
 
 	public void orderConfirmations(String messageBody, String email) {
 
@@ -53,8 +57,8 @@ public class EmailService {
 
 			Transport.send(message);
 
-		} catch (MessagingException m) {
-			m.printStackTrace();
+		} catch (MessagingException e) {
+		    logger.log(Level.SEVERE, "An error occurred while sending email", e);
 
 		}
 
