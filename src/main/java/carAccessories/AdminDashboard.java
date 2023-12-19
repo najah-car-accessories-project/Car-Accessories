@@ -9,7 +9,7 @@ public class AdminDashboard {
     private List<Users> users;
     private List<ProductCatalog> productCatalogs;
     private List<InstallationRequest> installationRequests;
-    private final static String HORIZONTAL_HR = "---------------------------------------------------";
+    private static final String HORIZONTAL_HR = "--------------------------------";
     public AdminDashboard() {
         this.users = new ArrayList<>();
         this.productCatalogs = new ArrayList<>();
