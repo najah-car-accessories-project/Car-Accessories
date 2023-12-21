@@ -10,14 +10,7 @@ public class Product {
     private double price;
     private boolean isAvailable;
 
-	public Product() {
-		this.name = "";
-		this.descriptions = "";
-		this.images = new ArrayList<>();
-	     this.price = 0.0;
-	     this.isAvailable = false;
-	            
-	}
+
  void print() {
 	 	System.out.println("Product Name: " + name + " - " + "Product Price: " + price + " ILS - " + "Product Availability: " + (isAvailable ? "In Stock" : "Out Of Stock" ) + " - "  + "Product Description: " + descriptions);
  }

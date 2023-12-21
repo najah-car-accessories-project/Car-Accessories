@@ -12,9 +12,9 @@ public class Installer extends Users {
 		this.setContactNumber(contactNumber);
 	}
 
-	public void setAvailability(boolean b) {
-		isInstallerAvailable = b;
-	}
+//	public void setAvailability(boolean b) {
+//		isInstallerAvailable = b;
+//	}
 
 	public boolean getAvailability() {
 		return isInstallerAvailable;

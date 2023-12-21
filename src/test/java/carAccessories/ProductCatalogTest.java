@@ -36,6 +36,7 @@ public class ProductCatalogTest {
 
 	@Then("the product is added to the specified category in the catalog")
 	public void the_product_is_added_to_the_specified_category_in_the_catalog() {
+		audioCategory.printProducts();
 		productCatalog.addProductToCategory(product, audioCategory.getName());
 		productCatalog.addProductToCategory(new Product("Bioner Pass", "desc", new ArrayList<String>(), 100.0, true),
 				audioCategory.getName());
@@ -69,7 +70,7 @@ public class ProductCatalogTest {
 
 	@Then("they see a list of all products with their details")
 	public void they_see_a_list_of_all_products_with_their_details() {
-		productCatalog.printProducts();
+		productCatalog.printCatalog();
 
 		assertNotNull(productList);
 	}

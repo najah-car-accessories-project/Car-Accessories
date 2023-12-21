@@ -1,12 +1,9 @@
 package carAccessories;
 
 import io.cucumber.java.en.*;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class CreateAccountTest {
 	String email;
@@ -40,9 +37,7 @@ public class CreateAccountTest {
 
 	@Then("the user's account is created successfully")
 	public void the_user_s_account_is_created_successfully() {
-		
-		
-
+		usersList.get(0).print();
 	}
 	
 	@Then("if the details are invalid, the user's account creation fails")

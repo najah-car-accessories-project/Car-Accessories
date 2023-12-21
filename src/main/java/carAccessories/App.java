@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class App {
 
+	
 	private static AdminDashboard adminDashboard;
 	private static int userIndex;
 	private static Scanner scan = new Scanner(System.in);
@@ -264,27 +265,22 @@ public class App {
 			case 4:
 				System.out.println("Enter Category Name:");
 				String categoryName = scan.next();
-				System.out.println("Enter Category Description:");
-				String categoryDescription = scan.next();
-				ProductCategory newCategory = new ProductCategory(categoryName, categoryDescription);
+				ProductCategory newCategory = new ProductCategory(categoryName);
 				productCatalog.addCategory(newCategory);
 				System.out.println("Category Added Successfully.\n");
-
 				break;
 			case 5:
-				// edit category name and description
 				productCatalog.printCategories();
 				System.out.println("Enter Category number:");
 				categoryIndex = scan.nextInt();
 				if (productCatalog.getAllCategories().size() > (categoryIndex + 1) && categoryIndex >= 0) {
 					System.out.println("Enter New Name:");
 					String newName = scan.next();
-					System.out.println("Enter New Description:");
-					String newDescription = scan.next();
+					
+					ProductCategory newCategory2 = new ProductCategory(newName);
+					productCatalog.getAllCategories().set(categoryIndex, newCategory2);
 
-					ProductCategory newCategory2 = new ProductCategory(newName, newDescription);
-
-					productCatalog.updateCategory(newCategory2);
+					
 					System.out.println("Category Edited Successfully.\n");
 				} else
 					System.out.println(invalidSelectionMsq);
@@ -624,13 +620,13 @@ public class App {
 			System.out.println("\t\tWelcome " + user.getEmail() + " - Signed In as Installer");
 			System.out.println(hr);
 			System.out.println("1. View Installation Requests");
-			System.out.println("2. Edit Or Delete Installation Appointment");
+//			System.out.println("2. Edit Or Delete Installation Appointment");
 			System.out.println("3. Change Email");
 			System.out.println("4. Change Password");
 			System.out.println("5. Change Contact Number");
 			System.out.println("6. View Profile");
 			System.out.println("7. View orders");
-			System.out.println("8. Change Availability");
+//			System.out.println("8. Change Availability");
 			System.out.println("9. Sign Out");
 			System.out.println("\nPlease select an option:");
 			int select;
@@ -650,43 +646,43 @@ public class App {
 				adminDashboard.printInstallationRequests();
 				break;
 			case 2:
-				adminDashboard.printInstallationRequests();
-				System.out.println("Choose Request:");
-				int requestNumber = scan.nextInt();
-				if (adminDashboard.getInstallationRequests().size() > (requestNumber) && requestNumber >= 0) {
-					System.out.println("1. Edit Request");
-					System.out.println("2. Delete Request");
-					System.out.println("3. Back");
-					int select2 = scan.nextInt();
-					switch (select2) {
-					case 1:
-						// change state
-						System.out.println("Enter New State:");
-						String newState = scan.next();
-						adminDashboard.getInstallationRequests().get(requestNumber).setState(newState,
-								adminDashboard.getInstallationRequests().get(requestNumber));
-						adminDashboard.getInstallationRequests().get(requestNumber).setInstaller((Installer) user);
-						System.out.println("Product Edited Successfully.\n");
-						break;
-					case 2:
-						// sure to delete
-						System.out.println("Are you sure you want to delete this request? (Y/N)");
-						String sure = scan.next();
-						if (sure.equalsIgnoreCase("Y")) {
-							adminDashboard.getInstallationRequests().remove(requestNumber);
-							System.out.println("Request Deleted Successfully.\n");
-						} else {
-							System.out.println("Request Not Deleted.\n");
-						}
-						break;
-					default:
-						System.out.println(invalidSelectionMsq);
-						System.out.println("\n");
-					}
-				} else {
-					System.out.println(invalidSelectionMsq);
-
-				}
+//				adminDashboard.printInstallationRequests();
+//				System.out.println("Choose Request:");
+//				int requestNumber = scan.nextInt();
+//				if (adminDashboard.getInstallationRequests().size() > (requestNumber) && requestNumber >= 0) {
+//					System.out.println("1. Edit Request");
+//					System.out.println("2. Delete Request");
+//					System.out.println("3. Back");
+//					int select2 = scan.nextInt();
+//					switch (select2) {
+//					case 1:
+//						
+//						System.out.println("Enter New State:");
+//						String newState = scan.next();
+//						adminDashboard.getInstallationRequests().get(requestNumber).setState(newState,
+//								adminDashboard.getInstallationRequests().get(requestNumber));
+//						adminDashboard.getInstallationRequests().get(requestNumber).setInstaller((Installer) user);
+//						System.out.println("Product Edited Successfully.\n");
+//						break;
+//					case 2:
+//						// sure to delete
+//						System.out.println("Are you sure you want to delete this request? (Y/N)");
+//						String sure = scan.next();
+//						if (sure.equalsIgnoreCase("Y")) {
+//							adminDashboard.getInstallationRequests().remove(requestNumber);
+//							System.out.println("Request Deleted Successfully.\n");
+//						} else {
+//							System.out.println("Request Not Deleted.\n");
+//						}
+//						break;
+//					default:
+//						System.out.println(invalidSelectionMsq);
+//						System.out.println("\n");
+//					}
+//				} else {
+//					System.out.println(invalidSelectionMsq);
+//
+//				}
 				break;
 			case 3:
 				String newEmail;
@@ -754,18 +750,18 @@ public class App {
 				adminDashboard.printCompletedInstallationRequests();
 				break;
 			case 8:
-				System.out.println("Enter Y Or N: ");
-				String state = scan.next();
-				boolean newAvailability;
-				if (state.equalsIgnoreCase("y"))
-					newAvailability = true;
-				else if (state.equalsIgnoreCase("n"))
-					newAvailability = false;
-				else {
-					System.out.println(invalidSelectionMsq);
-					break;
-				}
-				((Installer) user).setAvailability(newAvailability);
+//				System.out.println("Enter Y Or N: ");
+//				String state = scan.next();
+//				boolean newAvailability;
+//				if (state.equalsIgnoreCase("y"))
+//					newAvailability = true;
+//				else if (state.equalsIgnoreCase("n"))
+//					newAvailability = false;
+//				else {
+//					System.out.println(invalidSelectionMsq);
+//					break;
+//				}
+//				((Installer) user).setAvailability(newAvailability);
 				break;
 			case 9:
 				System.out.println(logoutMsq);
