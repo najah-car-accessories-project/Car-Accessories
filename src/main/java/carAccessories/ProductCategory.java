@@ -29,6 +29,9 @@ public class ProductCategory {
 	public List<Product> getAllProducts() {
 			return products;
 	}
+
+
+
 	public void printProducts() {
 		int i = 0;
 		for (Product product : products) {

@@ -17,6 +17,17 @@ public class ProductCatalog {
 		categories.add(category);
 	}
 
+	
+	public void updateCategory(ProductCategory updatedCategory) {
+		for (int i = 0; i < categories.size(); i++) {
+			if (updatedCategory.getName().equals(categories.get(i).getName())) {
+				categories.set(i, updatedCategory);
+				break;
+			}
+		}
+	}
+
+
 	public List<ProductCategory> getAllCategories() {
 		return categories;
 	}
