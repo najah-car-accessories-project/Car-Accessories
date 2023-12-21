@@ -17,6 +17,30 @@ public class ProductCatalog {
 		categories.add(category);
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	public void removeCategory(ProductCategory categoryToRemove) {
+		for (int i = 0; i < categories.size(); i++) {
+			if (categoryToRemove.getName().equalsIgnoreCase(categories.get(i).getName())) {
+				categories.remove(i);
+				break;
+			}
+		}
+	}
+
+	public boolean containsCategory(ProductCategory category) {
+		for (ProductCategory existingCategory : categories) {
+			if (existingCategory.getName().equals(category.getName())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+>>>>>>> 016c0e869197b18dd26b9881abc1421778eb8855
+>>>>>>> 0cf6b1fc06319f62bdd28fa610c2717bea4f4035
 	public void updateCategory(ProductCategory updatedCategory) {
 		for (int i = 0; i < categories.size(); i++) {
 			if (updatedCategory.getName().equals(categories.get(i).getName())) {
