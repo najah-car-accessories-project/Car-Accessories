@@ -132,8 +132,6 @@ public class Users {
 
 	@Override
     public boolean equals(Object o) {
-        if  (!(o instanceof Users))
-            return false;
         Users other = (Users) o;
         return (this.email.equals(other.email) && this.password.equals(other.password) && this.role.equals(other.role));
     }

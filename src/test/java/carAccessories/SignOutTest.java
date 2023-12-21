@@ -6,8 +6,11 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
 public class SignOutTest {
-	String role;
 	ArrayList<Users> usersList = new ArrayList<Users>();
+
+	public SignOutTest() {
+		usersList.add(new Customer("majdbasem6@gmail.com", "majd123", "Customer"));
+	}
 
 	@Given("that the {string} is signed in")
 	public void that_the_is_signed_in(String string) {
@@ -21,10 +24,6 @@ public class SignOutTest {
 		for (int i = 0; i < usersList.size(); i++)
 			if (usersList.get(i).checkRole(string))
 				usersList.get(i).signOut();
-	}
-
-	@Then("the {string} is not signed ins")
-	public void the_is_not_signed_ins(String string) {
 
 		for (int i = 0; i < usersList.size(); i++)
 			if (usersList.get(i).checkRole(string))

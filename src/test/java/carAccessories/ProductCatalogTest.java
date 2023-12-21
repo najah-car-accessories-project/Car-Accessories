@@ -36,7 +36,6 @@ public class ProductCatalogTest {
 
 	@Then("the product is added to the specified category in the catalog")
 	public void the_product_is_added_to_the_specified_category_in_the_catalog() {
-		audioCategory.printProducts();
 		productCatalog.addProductToCategory(product, audioCategory.getName());
 		productCatalog.addProductToCategory(new Product("Bioner Pass", "desc", new ArrayList<String>(), 100.0, true),
 				audioCategory.getName());
@@ -135,6 +134,8 @@ public class ProductCatalogTest {
 				audioCategory.getName());
 		productCatalog.addProductToCategory(new Product("Bioner normal", "desc", new ArrayList<String>(), 100.0, true),
 				audioCategory.getName());
+		audioCategory.printProducts();
+
 		productList = productCatalog.searchProducts(searchKey);
 		assertEquals(productList.size(), 3);
 	}

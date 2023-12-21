@@ -48,9 +48,6 @@ public class Product {
 		this.name = name;
 	}
     
-	public List<String> getImages() {
-		return images;
-	}
     public boolean isAvailable() {
         return isAvailable;
     }

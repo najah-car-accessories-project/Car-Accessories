@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class App {
 
-	
 	private static AdminDashboard adminDashboard;
 	private static int userIndex;
 	private static Scanner scan = new Scanner(System.in);
@@ -20,7 +19,6 @@ public class App {
 	final static String logoutMsq = "Logged Out...\n";
 	final static String hr = "================================================================================";
 
-	
 	public static void main(String[] args) {
 
 		init();
@@ -277,11 +275,10 @@ public class App {
 				if (productCatalog.getAllCategories().size() > (categoryIndex + 1) && categoryIndex >= 0) {
 					System.out.println("Enter New Name:");
 					String newName = scan.next();
-		
+
 					ProductCategory newCategory2 = new ProductCategory(newName);
 					productCatalog.getAllCategories().set(categoryIndex, newCategory2);
 
-					
 					System.out.println("Category Edited Successfully.\n");
 				} else
 					System.out.println(invalidSelectionMsq);
@@ -627,8 +624,7 @@ public class App {
 			System.out.println("5. Change Contact Number");
 			System.out.println("6. View Profile");
 			System.out.println("7. View orders");
-//			System.out.println("8. Change Availability");
-			System.out.println("9. Sign Out");
+			System.out.println("8. Sign Out");
 			System.out.println("\nPlease select an option:");
 			int select;
 
@@ -750,21 +746,8 @@ public class App {
 			case 7:
 				adminDashboard.printCompletedInstallationRequests();
 				break;
+			
 			case 8:
-//				System.out.println("Enter Y Or N: ");
-//				String state = scan.next();
-//				boolean newAvailability;
-//				if (state.equalsIgnoreCase("y"))
-//					newAvailability = true;
-//				else if (state.equalsIgnoreCase("n"))
-//					newAvailability = false;
-//				else {
-//					System.out.println(invalidSelectionMsq);
-//					break;
-//				}
-//				((Installer) user).setAvailability(newAvailability);
-				break;
-			case 9:
 				System.out.println(logoutMsq);
 				scan.nextLine();
 				return;

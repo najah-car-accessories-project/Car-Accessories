@@ -2,6 +2,7 @@ package carAccessories;
 
 import io.cucumber.java.en.*;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class EditProfileTest {
@@ -28,12 +29,14 @@ public class EditProfileTest {
 
 	@When("the Customer select edit profile option")
 	public void the_customer_select_edit_profile_option() {
-
+		customer.setName("Ali");
+		assertEquals(customer.getName(), "Ali");
 	}
 
 	@When("the Customer wants to change email and enters valid {string}")
 	public void the_customer_wants_to_change_email_and_enters_valid(String newEmail) {
 		assertTrue(customer.isValidEmail(newEmail));
+		
 		this.email = newEmail;
 	}
 
@@ -72,5 +75,6 @@ public class EditProfileTest {
 	@Then("the Customer's contact number will be updated")
 	public void the_customer_s_contact_number_will_be_updated() {
 		customer.setContactNumber(contactNumber);
+		customer.print();
 	}
 }

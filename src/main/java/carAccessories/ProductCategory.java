@@ -30,8 +30,6 @@ public class ProductCategory {
 			return products;
 	}
 
-
-
 	public void printProducts() {
 		int i = 0;
 		for (Product product : products) {

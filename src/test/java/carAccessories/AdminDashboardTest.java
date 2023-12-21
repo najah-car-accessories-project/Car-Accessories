@@ -44,6 +44,7 @@ public class AdminDashboardTest {
 		adminDashboard.addInstallationRequest(installationRequest1);
 
 		adminDashboard.addProductCatalog(productCatalog);
+		
 	}
 
 	@Given("the Admin is signed in")
@@ -99,8 +100,20 @@ public class AdminDashboardTest {
 
 		adminDashboard.getProductCatalogs().get(0).getAllCategories().get(0).getAllProducts().get(0)
 				.setName("Car Bomb");
+		adminDashboard.getProductCatalogs().get(0).getAllCategories().get(0).getAllProducts().get(0)
+		.setPrice(55.9);
+		adminDashboard.getProductCatalogs().get(0).getAllCategories().get(0).getAllProducts().get(0)
+		.setAvailability(true);
+		
 		assertEquals("Car Bomb",
 				adminDashboard.getProductCatalogs().get(0).getAllCategories().get(0).getAllProducts().get(0).getName());
+		
+		assertEquals(55.9,
+				adminDashboard.getProductCatalogs().get(0).getAllCategories().get(0).getAllProducts().get(0).getPrice(),
+				0);
+		assertTrue(adminDashboard.getProductCatalogs().get(0).getAllCategories().get(0).getAllProducts().get(0).isAvailable());
+				
+		adminDashboard.getProductCatalogs().get(0).getAllCategories().get(0).getAllProducts().get(0).print();		
 	}
 
 	@Then("they have options to Delete a product")
