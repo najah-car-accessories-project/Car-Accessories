@@ -146,28 +146,28 @@ public class AdminDashboardTest {
 
 	@Then("they can view all upcoming appointments")
 	public void they_can_view_all_upcoming_appointments() {
-<<<<<<< HEAD
+
 		adminDashboard.printInstallationRequest(adminDashboard.getUsers().get(0));
 		assertNotNull(adminDashboard.getAvailableInstaller());
 		assertEquals(1, adminDashboard.getInstallationRequests().size());
-=======
 
->>>>>>> 3e60fcb09c2a2bc4cb4d0afe6fb36763ea8d449c
+
+
 	}
 
 	@Then("they have options to Accepted an appointment")
 	public void they_have_options_to_accepted_an_appointment() {
-<<<<<<< HEAD
+
 		
 		adminDashboard.getInstallationRequests().get(0).setState("Rejected",adminDashboard.getInstallationRequests().get(0));
 		
 		adminDashboard.getInstallationRequests().get(0).setState("Accepted",adminDashboard.getInstallationRequests().get(0));
 		
-=======
+
 		adminDashboard.printCompletedInstallationRequest(adminDashboard.getUser(0));
 		adminDashboard.getInstallationRequests().get(0).setState("Accepted",
 				adminDashboard.getInstallationRequests().get(0));
->>>>>>> 3e60fcb09c2a2bc4cb4d0afe6fb36763ea8d449c
+
 		assertEquals("Accepted", adminDashboard.getInstallationRequests().get(0).getStats());
 		adminDashboard.printCompletedInstallationRequest(adminDashboard.getUser(0));
 
