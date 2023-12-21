@@ -20,6 +20,7 @@ public class App {
 	final static String logoutMsq = "Logged Out...\n";
 	final static String hr = "================================================================================";
 
+	
 	public static void main(String[] args) {
 
 		init();
@@ -265,9 +266,6 @@ public class App {
 			case 4:
 				System.out.println("Enter Category Name:");
 				String categoryName = scan.next();
-
-				System.out.println("Enter Category Description:");
-
 				ProductCategory newCategory = new ProductCategory(categoryName);
 				productCatalog.addCategory(newCategory);
 				System.out.println("Category Added Successfully.\n");
@@ -279,18 +277,11 @@ public class App {
 				if (productCatalog.getAllCategories().size() > (categoryIndex + 1) && categoryIndex >= 0) {
 					System.out.println("Enter New Name:");
 					String newName = scan.next();
-
-					
+		
 					ProductCategory newCategory2 = new ProductCategory(newName);
 					productCatalog.getAllCategories().set(categoryIndex, newCategory2);
 
 					
-
-
-					ProductCategory newCategory2 = new ProductCategory(newName);
-
-					productCatalog.updateCategory(newCategory2);
-
 					System.out.println("Category Edited Successfully.\n");
 				} else
 					System.out.println(invalidSelectionMsq);

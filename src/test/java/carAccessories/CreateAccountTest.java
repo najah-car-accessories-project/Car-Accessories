@@ -41,7 +41,7 @@ public class CreateAccountTest {
 		usersList.get(0).print();
 
 		user.print();
->>>>>>> abe38bf1672cc6dcad28d0ee2e82b8debf7a3e64
+
 	}
 	
 	@Then("if the details are invalid, the user's account creation fails")
