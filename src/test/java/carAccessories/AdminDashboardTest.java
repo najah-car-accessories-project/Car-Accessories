@@ -146,7 +146,10 @@ public class AdminDashboardTest {
 
 	@Then("they can view all upcoming appointments")
 	public void they_can_view_all_upcoming_appointments() {
+<<<<<<< HEAD
 		adminDashboard.printInstallationRequest(adminDashboard.getUsers().get(0));
+=======
+>>>>>>> 203cd3c8680baa9a4e721fe08418c0d842b50467
 		assertNotNull(adminDashboard.getAvailableInstaller());
 		assertEquals(1, adminDashboard.getInstallationRequests().size());
 	}
