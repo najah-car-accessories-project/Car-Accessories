@@ -72,11 +72,11 @@ public class LoginTest {
 					user = new Admin(email, password, role);
 					assertEquals(true, usersList.get(i).equals(user));
 				}
-				else if (role.equals("Doctor")) {
+				else if (role.equals("Customer")) {
 					user = new Customer(email, password, role);
 					assertEquals(true, usersList.get(i).equals(user));
 				}
-				else if (role.equals("Secretary")) {
+				else if (role.equals("Installer")) {
 					user = new Installer(email, password, role);
 					assertEquals(true, usersList.get(i).equals(user));
 				}
@@ -103,11 +103,11 @@ public class LoginTest {
 					user = new Admin(email, password, role);
 					assertEquals(false, usersList.get(i).equals(user));
 				}
-				else if (role.equals("Doctor")) {
+				else if (role.equals("Customer")) {
 					user = new Customer(email, password, role);
 					assertEquals(false, usersList.get(i).equals(user));
 				}
-				else if (role.equals("Secretary")) {
+				else if (role.equals("Installer")) {
 					user = new Installer(email, password, role);
 					assertEquals(false, usersList.get(i).equals(user));
 				}

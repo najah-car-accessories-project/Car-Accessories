@@ -1,12 +1,7 @@
 package carAccessories;
 
 import static org.junit.Assert.*;
-
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 
 import io.cucumber.java.en.*;
 
@@ -87,7 +82,7 @@ public class AdminDashboardTest {
 
 	@Then("they can view all products")
 	public void they_can_view_all_products() {
-
+		assertEquals(1,adminDashboard.searchProduct("JPL").size());
 		assertEquals(2, adminDashboard.getProductCatalogs().get(0).getAllCategories().get(0).getAllProducts().size());
 	}
 
@@ -117,7 +112,7 @@ public class AdminDashboardTest {
 
 	@Then("they can view all user accounts")
 	public void they_can_view_all_user_accounts() {
-
+		adminDashboard.printUsers();
 		assertEquals(3, adminDashboard.getUsers().size());
 	}
 
@@ -151,13 +146,14 @@ public class AdminDashboardTest {
 
 	@Then("they can view all upcoming appointments")
 	public void they_can_view_all_upcoming_appointments() {
-
+		adminDashboard.printInstallationRequest(adminDashboard.getUsers().get(0));
+		assertNotNull(adminDashboard.getAvailableInstaller());
 		assertEquals(1, adminDashboard.getInstallationRequests().size());
 	}
 
 	@Then("they have options to Accepted an appointment")
 	public void they_have_options_to_accepted_an_appointment() {
-
+		adminDashboard.printCompletedInstallationRequest(adminDashboard.getUser(0));
 		adminDashboard.getInstallationRequests().get(0).setState("Accepted",
 				adminDashboard.getInstallationRequests().get(0));
 		assertEquals("Accepted", adminDashboard.getInstallationRequests().get(0).getStats());
