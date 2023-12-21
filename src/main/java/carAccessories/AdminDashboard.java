@@ -82,10 +82,6 @@ public class AdminDashboard {
 		}
 	}
 
-	public int getTotalNumberOfUsers() {
-		return users.size();
-	}
-
 	public boolean addUser(Users user) {
 		if (user.createAccount(user.getEmail(), user.getPassword(), "0000000000")) {
 			users.add(user);

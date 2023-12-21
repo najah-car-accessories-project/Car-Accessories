@@ -69,7 +69,7 @@ public class ProductCatalogTest {
 
 	@Then("they see a list of all products with their details")
 	public void they_see_a_list_of_all_products_with_their_details() {
-		productCatalog.printProducts();
+		productCatalog.printCatalog();
 
 		assertNotNull(productList);
 	}

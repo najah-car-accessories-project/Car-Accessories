@@ -265,24 +265,20 @@ public class App {
 				System.out.println("Enter Category Name:");
 				String categoryName = scan.next();
 				System.out.println("Enter Category Description:");
-				String categoryDescription = scan.next();
-				ProductCategory newCategory = new ProductCategory(categoryName, categoryDescription);
+				ProductCategory newCategory = new ProductCategory(categoryName);
 				productCatalog.addCategory(newCategory);
 				System.out.println("Category Added Successfully.\n");
 
 				break;
 			case 5:
-				// edit category name and description
 				productCatalog.printCategories();
 				System.out.println("Enter Category number:");
 				categoryIndex = scan.nextInt();
 				if (productCatalog.getAllCategories().size() > (categoryIndex + 1) && categoryIndex >= 0) {
 					System.out.println("Enter New Name:");
 					String newName = scan.next();
-					System.out.println("Enter New Description:");
-					String newDescription = scan.next();
 
-					ProductCategory newCategory2 = new ProductCategory(newName, newDescription);
+					ProductCategory newCategory2 = new ProductCategory(newName);
 
 					productCatalog.updateCategory(newCategory2);
 					System.out.println("Category Edited Successfully.\n");
