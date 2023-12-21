@@ -87,7 +87,7 @@ public class AdminDashboardTest {
 
 	@Then("they can view all products")
 	public void they_can_view_all_products() {
-
+		assertEquals(1,adminDashboard.searchProduct("JPL").size());
 		assertEquals(2, adminDashboard.getProductCatalogs().get(0).getAllCategories().get(0).getAllProducts().size());
 	}
 
@@ -117,7 +117,7 @@ public class AdminDashboardTest {
 
 	@Then("they can view all user accounts")
 	public void they_can_view_all_user_accounts() {
-
+		adminDashboard.printUsers();
 		assertEquals(3, adminDashboard.getUsers().size());
 	}
 
@@ -151,7 +151,7 @@ public class AdminDashboardTest {
 
 	@Then("they can view all upcoming appointments")
 	public void they_can_view_all_upcoming_appointments() {
-
+		assertNotNull(adminDashboard.getAvailableInstaller());
 		assertEquals(1, adminDashboard.getInstallationRequests().size());
 	}
 

@@ -28,7 +28,6 @@ public class NotificationsTest {
 
 		customer = new Customer("mohammadbadawi01@gmail.com", "badawi2000", "Customer");
 		installationRequest = new InstallationRequest("10-12-2023 02:00", customer, productList, "Toyota Corolla");
-
 	}
 
 	@Given("a Customer has an pinding order")
@@ -59,8 +58,6 @@ public class NotificationsTest {
 
 	@Then("a notification is sent to the installer email informing about the new request")
 	public void a_notification_is_sent_to_the_installer_email_informing_about_the_new_request() {
-
-
 		assertEquals("Pending", installationRequest.getStats());
 	}
 

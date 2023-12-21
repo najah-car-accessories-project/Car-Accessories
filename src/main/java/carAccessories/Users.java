@@ -1,5 +1,6 @@
 package carAccessories;
 
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,6 +14,7 @@ public class Users {
 	public String contactNumber;
 	public boolean active ;
 	protected boolean isSignedIn;
+	private static final Logger LOGGER = Logger.getLogger(ProductCatalog.class.getName());
 	
 	public Users(String email, String password, String role) {
 		this.email = email;
@@ -25,21 +27,12 @@ public class Users {
 
 	}
 	
-	public Users(String newEmail, String newContactNumber, String newPassword, String newRole) {
-		this.email = newEmail;
-		this.contactNumber = newContactNumber;
-		this.password = newPassword;
-		this.role = newRole;
-		this.isSignedIn = false;
-		this.active = true;	
-	}
-
 	public void print() {
-		System.out.println("================================================================================");
-		System.out.println("\t\t\t\tUser Profile");
-		System.out.println("Email: " + this.email);
-		System.out.println("Role: " + this.role);
-		System.out.println("Contact Number: " + this.contactNumber);
+		LOGGER.fine("================================================================================");
+		LOGGER.fine("\t\t\t\tUser Profile");
+		LOGGER.fine("Email: " + this.email);
+		LOGGER.fine("Role: " + this.role);
+		LOGGER.fine("Contact Number: " + this.contactNumber);
 	}
 
 

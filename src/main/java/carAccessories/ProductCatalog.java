@@ -16,26 +16,6 @@ public class ProductCatalog {
 	void addCategory(ProductCategory category) {
 		categories.add(category);
 	}
-
-
-	public void removeCategory(ProductCategory categoryToRemove) {
-		for (int i = 0; i < categories.size(); i++) {
-			if (categoryToRemove.getName().equalsIgnoreCase(categories.get(i).getName())) {
-				categories.remove(i);
-				break;
-			}
-		}
-	}
-
-	public boolean containsCategory(ProductCategory category) {
-		for (ProductCategory existingCategory : categories) {
-			if (existingCategory.getName().equals(category.getName())) {
-				return true;
-			}
-		}
-		return false;
-	}
- 
 	
 	public void updateCategory(ProductCategory updatedCategory) {
 		for (int i = 0; i < categories.size(); i++) {
@@ -65,17 +45,6 @@ public class ProductCatalog {
 			LOGGER.fine(i + ". " + category.getName());
 			i++;
 
-		}
-
-	}
-
-	public void printProducts() {
-		int i = 0;
-		for (ProductCategory category : categories) {
-			LOGGER.fine(i + ". " + category.getName());
-			LOGGER.fine("---------------");
-			category.printProducts();
-			i++;
 		}
 
 	}
