@@ -40,7 +40,7 @@ public class ProductCatalogTest {
 		productCatalog.addProductToCategory(new Product("Bioner Pass", "desc", new ArrayList<String>(), 100.0, true),
 				audioCategory.getName());
 		assertNotNull(audioCategory.getAllProducts().get(0));
-
+		
 	}
 
 	@When("enter product index")
@@ -63,11 +63,14 @@ public class ProductCatalogTest {
 
 	@When("they select to view all products")
 	public void they_select_to_view_all_products() {
+
 		productList = productCatalog.getAllCategories().get(0).getAllProducts();
 	}
 
 	@Then("they see a list of all products with their details")
 	public void they_see_a_list_of_all_products_with_their_details() {
+		productCatalog.printProducts();
+
 		assertNotNull(productList);
 	}
 
@@ -107,6 +110,7 @@ public class ProductCatalogTest {
 	@Then("they see a list of all categories")
 	public void they_see_a_list_of_all_categories() {
 		assertEquals(productCatalog.getAllCategories().size(), 1);
+		productCatalog.printCategories();
 	}
 
 	@Given("a list of products in the catalog")
