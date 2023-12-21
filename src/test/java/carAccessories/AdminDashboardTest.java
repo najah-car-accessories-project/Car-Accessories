@@ -172,10 +172,13 @@ public class AdminDashboardTest {
 
 	@Then("they have options to Completed an appointment")
 	public void they_have_options_to_completed_an_appointment() {
-
+		adminDashboard.printInstallationRequests();
+		
 		adminDashboard.getInstallationRequests().get(0).setState("Completed",
 				adminDashboard.getInstallationRequests().get(0));
 		assertEquals("Completed", adminDashboard.getInstallationRequests().get(0).getStats());
+		
+		adminDashboard.printCompletedInstallationRequests();
 	}
 
 }

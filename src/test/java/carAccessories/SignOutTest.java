@@ -28,6 +28,7 @@ public class SignOutTest {
 	
 	@Then("the {string} is not signed ins")
 	public void the_is_not_signed_ins(String string) {
+		
 		for (int i = 0; i < usersList.size(); i++)
 			if (usersList.get(i).checkRole(string))
 			assertEquals(false,usersList.get(i).isSignedIn());
