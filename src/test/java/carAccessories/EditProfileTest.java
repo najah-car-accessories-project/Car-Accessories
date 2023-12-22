@@ -30,7 +30,7 @@ public class EditProfileTest {
 	@When("the Customer select edit profile option")
 	public void the_customer_select_edit_profile_option() {
 		customer.setName("Ali");
-		assertEquals(customer.getName(), "Ali");
+		assertEquals( "Ali",customer.getName());
 	}
 
 	@When("the Customer wants to change email and enters valid {string}")

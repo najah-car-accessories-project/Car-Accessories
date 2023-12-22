@@ -113,7 +113,10 @@ public class AdminDashboardTest {
 				0);
 		assertTrue(adminDashboard.getProductCatalogs().get(0).getAllCategories().get(0).getAllProducts().get(0).isAvailable());
 				
-		adminDashboard.getProductCatalogs().get(0).getAllCategories().get(0).getAllProducts().get(0).print();		
+		adminDashboard.getProductCatalogs().get(0).getAllCategories().get(0).getAllProducts().get(0).print();
+		
+		
+		assertNotNull(adminDashboard.getProductCatalogs().get(0).getAllCategories().get(0).getAllProducts().get(0).getImages());
 	}
 
 	@Then("they have options to Delete a product")

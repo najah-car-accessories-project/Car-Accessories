@@ -8,7 +8,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class LoginTest {
 	String email;
 	String password;
@@ -17,8 +16,7 @@ public class LoginTest {
 	Users user;
 
 	@Given("the users credentials")
-	public void theUserCredentials(
-			io.cucumber.datatable.DataTable dataTable) {
+	public void theUserCredentials(io.cucumber.datatable.DataTable dataTable) {
 		List<List<String>> rows = dataTable.asLists(String.class);
 
 		for (int i = 0; i < rows.size(); i++) {
@@ -37,7 +35,7 @@ public class LoginTest {
 	public void thatTheIsNotSignedIn(String role) {
 
 		for (int i = 0; i < usersList.size(); i++)
-		assertFalse(usersList.get(0).isSignedIn());
+			assertFalse(usersList.get(0).isSignedIn());
 	}
 
 	@Given("the {string} email is {string}")
@@ -58,25 +56,23 @@ public class LoginTest {
 
 		for (int i = 0; i < usersList.size(); i++)
 			if (usersList.get(i).checkRole(role))
-			assertTrue(usersList.get(i).signIn(email, password));
+				assertTrue(usersList.get(i).signIn(email, password));
 
 	}
 
 	@Then("the {string} is signed in")
 	public void theIsSignedIn(String string) {
-				
+
 		for (int i = 0; i < usersList.size(); i++)
 			if (usersList.get(i).checkRole(role)) {
 				assertTrue(usersList.get(i).isSignedIn());
 				if (role.equals("Admin")) {
 					user = new Admin(email, password, role);
 					assertEquals(true, usersList.get(i).equals(user));
-				}
-				else if (role.equals("Customer")) {
+				} else if (role.equals("Customer")) {
 					user = new Customer(email, password, role);
 					assertEquals(true, usersList.get(i).equals(user));
-				}
-				else if (role.equals("Installer")) {
+				} else if (role.equals("Installer")) {
 					user = new Installer(email, password, role);
 					assertEquals(true, usersList.get(i).equals(user));
 				}
@@ -94,6 +90,7 @@ public class LoginTest {
 			if (usersList.get(i).checkRole(role))
 				assertFalse(usersList.get(i).signIn(email, password));
 	}
+
 	@Then("the {string} is not signed in")
 	public void theIsNotSignedIn(String string) {
 		for (int i = 0; i < usersList.size(); i++)
@@ -102,12 +99,10 @@ public class LoginTest {
 				if (role.equals("Admin")) {
 					user = new Admin(email, password, role);
 					assertEquals(false, usersList.get(i).equals(user));
-				}
-				else if (role.equals("Customer")) {
+				} else if (role.equals("Customer")) {
 					user = new Customer(email, password, role);
 					assertEquals(false, usersList.get(i).equals(user));
-				}
-				else if (role.equals("Installer")) {
+				} else if (role.equals("Installer")) {
 					user = new Installer(email, password, role);
 					assertEquals(false, usersList.get(i).equals(user));
 				}

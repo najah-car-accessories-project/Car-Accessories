@@ -26,7 +26,7 @@ public class InstallationRequest {
 		this.customer = customer;
 		this.products = products;
 		this.carDetails = carDetails;
-		this.state = "Pending";		
+		this.state = "Pending";
 	}
 
 	void print() {
@@ -41,10 +41,6 @@ public class InstallationRequest {
 		}
 	}
 
-//	void setCarDetails(String carDetails) {
-//		this.carDetails = carDetails;
-//	}
-
 	public String getCarDetails() {
 		return carDetails;
 	}
@@ -53,37 +49,13 @@ public class InstallationRequest {
 		return date;
 	}
 
-//	public void setInstallationDate(String installationDate) {
-//		this.date = installationDate;
-//	}
-
-//	public Installer getInstaller() {
-//		return installer;
-//	}
-
-//	public void setInstaller(Installer installer) {
-//		this.installer = installer;
-//	}
-
 	public Customer getCustomer() {
 		return customer;
 	}
 
-//	public void setCustomer(Customer customer) {
-//		this.customer = customer;
-//	}
-
 	public List<Product> getProducts() {
 		return products;
 	}
-
-//	public void setProducts(List<Product> products) {
-//		this.products = products;
-//	}
-//
-//	public void setEmailService(EmailService emailService) {
-//		this.emailService = emailService;
-//	}
 
 	public String getStats() {
 

@@ -21,22 +21,18 @@ public class InstallationRequestsTest {
 		productList = new ArrayList<Product>();
 		productList.add(product1);
 		productList.add(product2);
-		
-		
+
 		installer = new Installer("majdbasem6@gmail.com", "majd2000", "Installer");
 		customer = new Customer("mohammadbadawi01@gmail.com", "mohammadbadawi2001", "Customer");
 		customer.signIn("mohammadbadawi01@gmail.com", "mohammadbadawi2001");
-		
-		
-		installationRequest = new InstallationRequest("10-12-2023 02:00", customer, productList , "Toyota Corolla");
+
+		installationRequest = new InstallationRequest("10-12-2023 02:00", customer, productList, "Toyota Corolla");
 		installationRequestList = new ArrayList<InstallationRequest>();
 		installationRequestList.add(installationRequest);
-		installationRequestList.add(new InstallationRequest("11-12-2023 02:00", customer,productList, "BMW"));
+		installationRequestList.add(new InstallationRequest("11-12-2023 02:00", customer, productList, "BMW"));
 
 		admin = new Admin("haya@gmail.com", "drhaya9999", "Admin");
 
-	
-		
 	}
 
 	@Given("a Customer is logged in")

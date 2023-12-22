@@ -2,6 +2,7 @@ package carAccessories;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ProductCatalog {
@@ -33,7 +34,7 @@ public class ProductCatalog {
 	public void printCategories() {
 		int i = 0;
 		for (ProductCategory category : categories) {
-			LOGGER.fine(i + ". " + category.getName());
+	        LOGGER.log(Level.FINE, "{0} - {1}", new Object[]{i, category.getName()});
 			i++;
 
 		}
