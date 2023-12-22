@@ -13,7 +13,7 @@ public class Users {
 	public String contactNumber;
 	public boolean active;
 	protected boolean isSignedIn;
-	private static final Logger LOGGER = Logger.getLogger(ProductCatalog.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(Users.class.getName());
 
 	public Users(String email, String password, String role) {
 		this.email = email;

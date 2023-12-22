@@ -1,7 +1,7 @@
 package carAccessories;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Product {
 	private String name;
@@ -9,14 +9,24 @@ public class Product {
 	private List<String> images;
 	private double price;
 	private boolean isAvailable;
+	private static final Logger LOGGER = Logger.getLogger(Product.class.getName());
+	private static final String HORIZONTAL_HR = "--------------------------------";
+	private static final String INDEX_FORMAT = "{0}. ";
 
 	void print() {
-		System.out.println(
-				"Product Name: " + name + " - " + "Product Price: " + price + " ILS - " + "Product Availability: "
-						+ (isAvailable ? "In Stock" : "Out Of Stock") + " - " + "Product Description: " + descriptions);
+		LOGGER.fine(HORIZONTAL_HR);
+	    LOGGER.fine("\t\t\t\tProduct Details");
+	    LOGGER.log(Level.FINE, INDEX_FORMAT, new Object[] { "Name: " + this.name });
+	    LOGGER.log(Level.FINE, INDEX_FORMAT, new Object[] { "Description: " + this.descriptions });
+	    LOGGER.log(Level.FINE, INDEX_FORMAT, new Object[] { "Price: " + this.price });
+	    LOGGER.log(Level.FINE, INDEX_FORMAT, new Object[] { "Availability: " + (this.isAvailable ? "In Stock" : "Out of Stock") });
+	    LOGGER.log(Level.FINE, INDEX_FORMAT, new Object[] { "Images: " + this.images });
+	    LOGGER.fine(HORIZONTAL_HR);
+
+		
 	}
 
-	public Product(String name, String descriptions, ArrayList<String> images, double price, boolean isAvailable) {
+	public Product(String name, String descriptions, List<String>images, double price, boolean isAvailable) {
 		this.name = name;
 		this.descriptions = descriptions;
 		this.images = images;
