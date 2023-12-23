@@ -18,18 +18,19 @@ public class AdminDashboard {
 	private static final Logger LOGGER = Logger.getLogger(AdminDashboard.class.getName());
 	private EmailService emailService = new EmailService();
 	private static final String INDEX_FORMAT = "{0}. ";
+
 	static {
-	    LOGGER.setLevel(Level.FINE);
-	    Handler consoleHandler = new ConsoleHandler();
-	    consoleHandler.setLevel(Level.FINE);
-	    consoleHandler.setFormatter(new Formatter() {
-	        @Override
-	        public String format(LogRecord logRecord) {
-	            return logRecord.getMessage() + System.lineSeparator();
-	           }
-	    });
-	    LOGGER.addHandler(consoleHandler);
-	    LOGGER.setUseParentHandlers(false);
+		LOGGER.setLevel(Level.FINE);
+		Handler consoleHandler = new ConsoleHandler();
+		consoleHandler.setLevel(Level.FINE);
+		consoleHandler.setFormatter(new Formatter() {
+
+			public String format(LogRecord logRecord) {
+				return logRecord.getMessage() + System.lineSeparator();
+			}
+		});
+		LOGGER.addHandler(consoleHandler);
+		LOGGER.setUseParentHandlers(false);
 	}
 
 	public AdminDashboard() {
