@@ -24,8 +24,13 @@ public class AdminDashboard {
 	    consoleHandler.setLevel(Level.FINE);
 	    consoleHandler.setFormatter(new Formatter() {
 	        @Override
+<<<<<<< HEAD
 	        public String format(LogRecord logRecord) {
 	            return logRecord.getMessage() + System.lineSeparator();
+=======
+	        public String format(LogRecord record) {
+	            return record.getMessage() + System.lineSeparator();
+>>>>>>> 13ff115b9e13653810dc42c6433f49d8919c5da2
 	        }
 	    });
 	    LOGGER.addHandler(consoleHandler);

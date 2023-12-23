@@ -1,4 +1,5 @@
 package carAccessories;
+import java.text.MessageFormat;
 import java.util.List;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Formatter;
@@ -6,6 +7,7 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class Product {
 	private String name;
@@ -16,18 +18,28 @@ public class Product {
 	private static final Logger LOGGER = Logger.getLogger(Product.class.getName());
 	private static final String HORIZONTAL_HR = "--------------------------------";
 	private static final String INDEX_FORMAT = "{0}. ";
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 13ff115b9e13653810dc42c6433f49d8919c5da2
 	static {
 	    LOGGER.setLevel(Level.FINE);
 	    Handler consoleHandler = new ConsoleHandler();
 	    consoleHandler.setLevel(Level.FINE);
 	    consoleHandler.setFormatter(new Formatter() {
 	        @Override
+<<<<<<< HEAD
 	        public String format(LogRecord logRecord) {
 	            return logRecord.getMessage() + System.lineSeparator();
+=======
+	        public String format(LogRecord record) {
+	            return record.getMessage() + System.lineSeparator();
+>>>>>>> 13ff115b9e13653810dc42c6433f49d8919c5da2
 	        }
 	    });
 	    LOGGER.addHandler(consoleHandler);
 	    LOGGER.setUseParentHandlers(false);
+<<<<<<< HEAD
 	}
 
 	public void print() {
@@ -41,8 +53,19 @@ public class Product {
 	        LOGGER.log(Level.FINE, INDEX_FORMAT + "Images: {0}", new Object[]{images.toString()});
 	    }
 	    LOGGER.fine(HORIZONTAL_HR);
+=======
+>>>>>>> 13ff115b9e13653810dc42c6433f49d8919c5da2
 	}
 
+	 public void print() {
+	        LOGGER.fine(HORIZONTAL_HR);
+	        LOGGER.fine("\t\t\t\tProduct Details");
+	        LOGGER.fine("Name: " + this.name);
+	        LOGGER.fine("Description: " + this.descriptions);
+	        LOGGER.fine("Price: " + this.price);
+	        LOGGER.fine("Availability: " + (this.isAvailable ? "In Stock" : "Out of Stock"));
+	        LOGGER.fine(HORIZONTAL_HR);
+	    }
 	public Product(String name, String descriptions, List<String>images, double price, boolean isAvailable) {
 		this.name = name;
 		this.descriptions = descriptions;

@@ -13,8 +13,13 @@
 		<maven.compiler.target>17</maven.compiler.target>
 		<sonar.organization>najah-car-accessories-project</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+<<<<<<< HEAD
 		<sonar.exclusions>**/carAccessories/App.java</sonar.exclusions>
 		<sonar.exclusions>**/carAccessories/PlainTextFormatter.java</sonar.exclusions>
+=======
+		    <sonar.exclusions>**/carAccessories/App.java, **/carAccessories/PlainTextFormatter.java</sonar.exclusions>
+
+>>>>>>> 13ff115b9e13653810dc42c6433f49d8919c5da2
 	</properties>
 
 
