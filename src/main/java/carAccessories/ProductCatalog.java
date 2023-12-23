@@ -22,7 +22,6 @@ public class ProductCatalog {
 
 			public String format(LogRecord logRecord) {
 				return logRecord.getMessage() + System.lineSeparator();
-
 			}
 		});
 		LOGGER.addHandler(consoleHandler);
@@ -53,9 +52,7 @@ public class ProductCatalog {
 	public void printCategories() {
 		int i = 0;
 		for (ProductCategory category : categories) {
-
-			LOGGER.info(i + ". ");
-
+	        LOGGER.log(Level.INFO, "{0}. ", new Object[]{i});
 			LOGGER.info(category.getName());
 			i++;
 
