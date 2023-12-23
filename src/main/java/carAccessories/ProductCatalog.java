@@ -13,9 +13,9 @@ public class ProductCatalog {
 	private static final String HORIZONTAL_HR = "--------------------------------";
 
 	static {
-		LOGGER.setLevel(Level.SEVERE);
+		LOGGER.setLevel(Level.INFO);
 		Handler consoleHandler = new ConsoleHandler();
-		consoleHandler.setLevel(Level.SEVERE);
+		consoleHandler.setLevel(Level.INFO);
         consoleHandler.setFormatter(new PlainTextFormatter());
 
 		LOGGER.addHandler(consoleHandler);

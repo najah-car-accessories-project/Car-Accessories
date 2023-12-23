@@ -18,9 +18,9 @@ public class AdminDashboard {
 	private static final String INDEX_FORMAT = "{0}. ";
 
 	static {
-		LOGGER.setLevel(Level.SEVERE);
+		LOGGER.setLevel(Level.ALL);
 		Handler consoleHandler = new ConsoleHandler();
-		consoleHandler.setLevel(Level.SEVERE);
+		consoleHandler.setLevel(Level.ALL);
         consoleHandler.setFormatter(new PlainTextFormatter());
 
 		LOGGER.addHandler(consoleHandler);
