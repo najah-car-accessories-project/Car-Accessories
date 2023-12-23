@@ -30,11 +30,11 @@ public class InstallationRequest {
 	}
 
 	void print() {
-		System.out.println("Installation Date: " + date);
-		System.out.println("Installer: " + installer.getName());
-		System.out.println("Customer: " + customer.getName());
-		System.out.println("Car Details: " + carDetails);
-		System.out.println("State: " + state);
+		System.out.println("Installation Date: " + this.date);
+		System.out.println("Installer: " + this.installer.getEmail());
+		System.out.println("Customer: " + this.customer.getEmail());
+		System.out.println("Car Details: " + this.carDetails);
+		System.out.println("State: " + this.state);
 		System.out.println("Products: ");
 		for (Product product : products) {
 			product.print();
@@ -74,6 +74,10 @@ public class InstallationRequest {
 		}
 
 		this.state = state;
+	}
+
+	public void setInstaller(Installer installer2) {
+		this.installer = installer2;
 	}
 
 }

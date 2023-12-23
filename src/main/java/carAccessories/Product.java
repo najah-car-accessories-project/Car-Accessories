@@ -1,6 +1,10 @@
 package carAccessories;
 import java.util.List;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Formatter;
+import java.util.logging.Handler;
 import java.util.logging.Level;
+import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
 public class Product {
@@ -12,18 +16,31 @@ public class Product {
 	private static final Logger LOGGER = Logger.getLogger(Product.class.getName());
 	private static final String HORIZONTAL_HR = "--------------------------------";
 	private static final String INDEX_FORMAT = "{0}. ";
+	static {
+	    LOGGER.setLevel(Level.FINE);
+	    Handler consoleHandler = new ConsoleHandler();
+	    consoleHandler.setLevel(Level.FINE);
+	    consoleHandler.setFormatter(new Formatter() {
+	        @Override
+	        public String format(LogRecord logRecord) {
+	            return logRecord.getMessage() + System.lineSeparator();
+	        }
+	    });
+	    LOGGER.addHandler(consoleHandler);
+	    LOGGER.setUseParentHandlers(false);
+	}
 
-	void print() {
-		LOGGER.fine(HORIZONTAL_HR);
-	    LOGGER.fine("\t\t\t\tProduct Details");
-	    LOGGER.log(Level.FINE, INDEX_FORMAT, new Object[] { "Name: " + this.name });
-	    LOGGER.log(Level.FINE, INDEX_FORMAT, new Object[] { "Description: " + this.descriptions });
-	    LOGGER.log(Level.FINE, INDEX_FORMAT, new Object[] { "Price: " + this.price });
-	    LOGGER.log(Level.FINE, INDEX_FORMAT, new Object[] { "Availability: " + (this.isAvailable ? "In Stock" : "Out of Stock") });
-	    LOGGER.log(Level.FINE, INDEX_FORMAT, new Object[] { "Images: " + this.images });
+	public void print() {
 	    LOGGER.fine(HORIZONTAL_HR);
-
-		
+	    LOGGER.fine("\t\t\t\tProduct Details");
+	    LOGGER.log(Level.FINE, INDEX_FORMAT + "Name: {0}", new Object[]{this.name});
+	    LOGGER.log(Level.FINE, INDEX_FORMAT + "Description: {0}", new Object[]{this.descriptions});
+	    LOGGER.log(Level.FINE, INDEX_FORMAT + "Price: {0} ILS", new Object[]{this.price});
+	    LOGGER.log(Level.FINE, INDEX_FORMAT + "Availability: {0}", new Object[]{this.isAvailable ? "In Stock" : "Out of Stock"});
+	    if (images != null && !images.isEmpty()) {
+	        LOGGER.log(Level.FINE, INDEX_FORMAT + "Images: {0}", new Object[]{images.toString()});
+	    }
+	    LOGGER.fine(HORIZONTAL_HR);
 	}
 
 	public Product(String name, String descriptions, List<String>images, double price, boolean isAvailable) {

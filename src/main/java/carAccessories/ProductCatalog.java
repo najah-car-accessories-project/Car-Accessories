@@ -2,13 +2,31 @@ package carAccessories;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Formatter;
+import java.util.logging.Handler;
 import java.util.logging.Level;
+import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
 public class ProductCatalog {
 	private List<ProductCategory> categories;
 	private static final Logger LOGGER = Logger.getLogger(ProductCatalog.class.getName());
 	private static final String HORIZONTAL_HR = "--------------------------------";
+
+	static {
+		LOGGER.setLevel(Level.FINE);
+		Handler consoleHandler = new ConsoleHandler();
+		consoleHandler.setLevel(Level.FINE);
+		consoleHandler.setFormatter(new Formatter() {
+			@Override
+			public String format(LogRecord logRecord) {
+				return logRecord.getMessage() + System.lineSeparator();
+			}
+		});
+		LOGGER.addHandler(consoleHandler);
+		LOGGER.setUseParentHandlers(false);
+	}
 
 	public ProductCatalog() {
 		this.categories = new ArrayList<>();
@@ -34,7 +52,8 @@ public class ProductCatalog {
 	public void printCategories() {
 		int i = 0;
 		for (ProductCategory category : categories) {
-	        LOGGER.log(Level.FINE, "{0} - {1}", new Object[]{i, category.getName()});
+			LOGGER.info(i + ". ");
+			LOGGER.info(category.getName());
 			i++;
 
 		}
@@ -56,9 +75,11 @@ public class ProductCatalog {
 
 	public List<Product> searchProducts(String searchKey) {
 		List<Product> products = new ArrayList<>();
+		String searchKeyLower = searchKey.toLowerCase();
 		for (ProductCategory productCategory : categories) {
 			for (Product product : productCategory.getProducts()) {
-				if (product.getName().contains(searchKey) || product.getDescriptions().contains(searchKey)) {
+				if (product.getName().toLowerCase().contains(searchKeyLower) ||
+						product.getDescriptions().toLowerCase().contains(searchKeyLower)) {
 					products.add(product);
 				}
 			}
