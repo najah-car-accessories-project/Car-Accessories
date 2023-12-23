@@ -20,17 +20,10 @@ public class Users {
 	private static final Logger LOGGER = Logger.getLogger(Users.class.getName());
 
 	static {
-	    LOGGER.setLevel(Level.FINE);
+	    LOGGER.setLevel(Level.SEVERE);
 	    Handler consoleHandler = new ConsoleHandler();
-	    consoleHandler.setLevel(Level.FINE);
-	    consoleHandler.setFormatter(new Formatter() {
-	        @Override
-
-	        public String format(LogRecord logRecord) {
-	            return logRecord.getMessage() + System.lineSeparator();
-
-	           }
-	    });
+	    consoleHandler.setLevel(Level.SEVERE);
+        consoleHandler.setFormatter(new PlainTextFormatter());
 	    LOGGER.addHandler(consoleHandler);
 	    LOGGER.setUseParentHandlers(false);
 	}

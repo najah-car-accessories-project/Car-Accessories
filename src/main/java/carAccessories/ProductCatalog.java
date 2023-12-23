@@ -15,15 +15,11 @@ public class ProductCatalog {
 	private static final String HORIZONTAL_HR = "--------------------------------";
 
 	static {
-		LOGGER.setLevel(Level.FINE);
+		LOGGER.setLevel(Level.SEVERE);
 		Handler consoleHandler = new ConsoleHandler();
-		consoleHandler.setLevel(Level.FINE);
-		consoleHandler.setFormatter(new Formatter() {
+		consoleHandler.setLevel(Level.SEVERE);
+        consoleHandler.setFormatter(new PlainTextFormatter());
 
-			public String format(LogRecord logRecord) {
-				return logRecord.getMessage() + System.lineSeparator();
-			}
-		});
 		LOGGER.addHandler(consoleHandler);
 		LOGGER.setUseParentHandlers(false);
 	}

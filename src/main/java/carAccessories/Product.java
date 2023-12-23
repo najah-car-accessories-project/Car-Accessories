@@ -18,17 +18,11 @@ public class Product {
 	private static final String INDEX_FORMAT = "{0}. ";
 
 	static {
-	    LOGGER.setLevel(Level.FINE);
+	    LOGGER.setLevel(Level.SEVERE);
 	    Handler consoleHandler = new ConsoleHandler();
-	    consoleHandler.setLevel(Level.FINE);
-	    consoleHandler.setFormatter(new Formatter() {
-	        @Override
+	    consoleHandler.setLevel(Level.SEVERE);
+        consoleHandler.setFormatter(new PlainTextFormatter());
 
-	        public String format(LogRecord logRecord) {
-	            return logRecord.getMessage() + System.lineSeparator();
-
-	              }
-	    });
 	    LOGGER.addHandler(consoleHandler);
 	    LOGGER.setUseParentHandlers(false);
 

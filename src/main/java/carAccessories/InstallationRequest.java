@@ -19,15 +19,11 @@ public class InstallationRequest {
 	private static final Logger LOGGER = Logger.getLogger(InstallationRequest.class.getName());
 	private static final String INDEX_FORMAT = "{0}. ";
 	static {
-	    LOGGER.setLevel(Level.FINE);
+	    LOGGER.setLevel(Level.SEVERE);
 	    Handler consoleHandler = new ConsoleHandler();
-	    consoleHandler.setLevel(Level.FINE);
-	    consoleHandler.setFormatter(new Formatter() {
-	        @Override
-	        public String format(LogRecord logRecord) {
-	            return logRecord.getMessage() + System.lineSeparator();
-	           }
-	    });
+	    consoleHandler.setLevel(Level.SEVERE);
+        consoleHandler.setFormatter(new PlainTextFormatter());
+
 	    LOGGER.addHandler(consoleHandler);
 	    LOGGER.setUseParentHandlers(false);
 	}
@@ -51,11 +47,11 @@ public class InstallationRequest {
 	}
 
 	void print() {
-		  LOGGER.info(INDEX_FORMAT + "Installation Date: " + this.date);
-	        LOGGER.info(INDEX_FORMAT + "Installer: " + (this.installer != null ? this.installer.getEmail() : "None assigned"));
-	        LOGGER.info(INDEX_FORMAT + "Customer: " + this.customer.getEmail());
-	        LOGGER.info(INDEX_FORMAT + "Car Details: " + this.carDetails);
-	        LOGGER.info(INDEX_FORMAT + "State: " + this.state);
+		 LOGGER.log(Level.INFO, "{0}Installation Date: {1}", new Object[]{INDEX_FORMAT, this.date});
+	        LOGGER.log(Level.INFO, "{0}Installer: {1}", new Object[]{INDEX_FORMAT, (this.installer != null ? this.installer.getEmail() : "None assigned")});
+	        LOGGER.log(Level.INFO, "{0}Customer: {1}", new Object[]{INDEX_FORMAT, this.customer.getEmail()});
+	        LOGGER.log(Level.INFO, "{0}Car Details: {1}", new Object[]{INDEX_FORMAT, this.carDetails});
+	        LOGGER.log(Level.INFO, "{0}State: {1}", new Object[]{INDEX_FORMAT, this.state});
 	        LOGGER.info("Products: ");
 		for (Product product : products) {
 			product.print();
