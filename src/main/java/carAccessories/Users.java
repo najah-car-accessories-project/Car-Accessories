@@ -1,6 +1,10 @@
 package carAccessories;
 
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Formatter;
+import java.util.logging.Handler;
 import java.util.logging.Level;
+import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,7 +18,19 @@ public class Users {
 	public boolean active;
 	protected boolean isSignedIn;
 	private static final Logger LOGGER = Logger.getLogger(Users.class.getName());
-
+	static {
+	    LOGGER.setLevel(Level.FINE);
+	    Handler consoleHandler = new ConsoleHandler();
+	    consoleHandler.setLevel(Level.FINE);
+	    consoleHandler.setFormatter(new Formatter() {
+	        @Override
+	        public String format(LogRecord record) {
+	            return record.getMessage() + System.lineSeparator();
+	        }
+	    });
+	    LOGGER.addHandler(consoleHandler);
+	    LOGGER.setUseParentHandlers(false);
+	}
 	public Users(String email, String password, String role) {
 		this.email = email;
 		this.password = password;
@@ -27,12 +43,11 @@ public class Users {
 	}
 
 	public void print() {
-		LOGGER.fine("================================================================================");
-		LOGGER.fine("\t\t\t\tUser Profile");
-		LOGGER.log(Level.FINE, "Email: {0}", new Object[]{this.email});
-		LOGGER.log(Level.FINE, "Role: {0}", new Object[]{this.role});
-		LOGGER.log(Level.FINE, "Contact Number: {0}", new Object[]{this.contactNumber});
-
+		LOGGER.info("================================================================================");
+		LOGGER.info("\t\t\t\tUser Profile");
+		LOGGER.info("Email: " + this.email);
+		LOGGER.info("Role: " + this.role);
+		LOGGER.info("Contact Number: "+this.contactNumber);
 	}
 
 	public String getName() {

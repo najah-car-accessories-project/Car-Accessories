@@ -2,7 +2,11 @@ package carAccessories;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Formatter;
+import java.util.logging.Handler;
 import java.util.logging.Level;
+import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
 public class AdminDashboard {
@@ -14,7 +18,19 @@ public class AdminDashboard {
 	private static final Logger LOGGER = Logger.getLogger(AdminDashboard.class.getName());
 	private EmailService emailService = new EmailService();
 	private static final String INDEX_FORMAT = "{0}. ";
-
+	static {
+	    LOGGER.setLevel(Level.FINE);
+	    Handler consoleHandler = new ConsoleHandler();
+	    consoleHandler.setLevel(Level.FINE);
+	    consoleHandler.setFormatter(new Formatter() {
+	        @Override
+	        public String format(LogRecord record) {
+	            return record.getMessage() + System.lineSeparator();
+	        }
+	    });
+	    LOGGER.addHandler(consoleHandler);
+	    LOGGER.setUseParentHandlers(false);
+	}
 
 	public AdminDashboard() {
 		this.users = new ArrayList<>();
@@ -95,7 +111,6 @@ public class AdminDashboard {
 	}
 
 	public void addInstallationRequest(InstallationRequest installationRequest) {
-		installationRequests.add(installationRequest);
 
 		StringBuilder messageBody = new StringBuilder();
 		messageBody.append("New Installation Request has been placed on ")
@@ -105,8 +120,11 @@ public class AdminDashboard {
 		for (Product product : installationRequest.getProducts()) {
 			messageBody.append("\n").append(product.getName()).append(", ").append(product.getDescriptions());
 		}
+		Installer installer = getAvailableInstaller();
+		emailService.newInstallationRequest(messageBody.toString(), installer.getEmail());
+		installationRequest.setInstaller(installer);
+		installationRequests.add(installationRequest);
 
-		emailService.newInstallationRequest(messageBody.toString(), getAvailableInstaller().getEmail());
 	}
 
 	public Installer getAvailableInstaller() {
