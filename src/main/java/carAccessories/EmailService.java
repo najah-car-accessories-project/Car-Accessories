@@ -28,34 +28,34 @@ public class EmailService {
 
 	public void send(String to, String messageBody, String messageObject) {
 
-//		String from = "majdbasem6@gmail.com";
-//		String password = System.getenv("EMAIL_PASSWORD"); 
-//		try {
-//			Properties properties = System.getProperties();
-//			properties.put("mail.smtp.host", "smtp.gmail.com");
-//			properties.put("mail.smtp.port", "587");
-//			properties.put("mail.smtp.auth", "true");
-//			properties.put("mail.smtp.starttls.enable", "true");
-//			
-//			Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
-//				@Override
-//				protected PasswordAuthentication getPasswordAuthentication() {
-//					return new PasswordAuthentication(from, password);
-//				}
-//			});
-//			
-//			session.setDebug(true);
-//			MimeMessage message = new MimeMessage(session);
-//			message.setFrom(new InternetAddress(from));
-//			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to, false));
-//			message.setSubject(messageObject);
-//			message.setText(messageBody);
-//			Transport.send(message);
-//
-//		} catch (MessagingException e) {
-//		    logger.log(Level.SEVERE, "An error occurred while sending email", e);
-//
-//		}
+		String from = "majdbasem6@gmail.com";
+		String password = System.getenv("EMAIL_PASSWORD"); 
+		try {
+			Properties properties = System.getProperties();
+			properties.put("mail.smtp.host", "smtp.gmail.com");
+			properties.put("mail.smtp.port", "587");
+			properties.put("mail.smtp.auth", "true");
+			properties.put("mail.smtp.starttls.enable", "true");
+			
+			Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+				@Override
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(from, password);
+				}
+			});
+			
+			session.setDebug(true);
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(from));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to, false));
+			message.setSubject(messageObject);
+			message.setText(messageBody);
+			Transport.send(message);
+
+		} catch (MessagingException e) {
+		    logger.log(Level.SEVERE, "An error occurred while sending email", e);
+
+		}
 
 	}
 

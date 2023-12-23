@@ -18,25 +18,18 @@ public class Users {
 	public boolean active;
 	protected boolean isSignedIn;
 	private static final Logger LOGGER = Logger.getLogger(Users.class.getName());
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 13ff115b9e13653810dc42c6433f49d8919c5da2
 	static {
 	    LOGGER.setLevel(Level.FINE);
 	    Handler consoleHandler = new ConsoleHandler();
 	    consoleHandler.setLevel(Level.FINE);
 	    consoleHandler.setFormatter(new Formatter() {
 	        @Override
-<<<<<<< HEAD
+
 	        public String format(LogRecord logRecord) {
 	            return logRecord.getMessage() + System.lineSeparator();
-=======
-	        public String format(LogRecord record) {
-	            return record.getMessage() + System.lineSeparator();
->>>>>>> 13ff115b9e13653810dc42c6433f49d8919c5da2
-	        }
+
+	           }
 	    });
 	    LOGGER.addHandler(consoleHandler);
 	    LOGGER.setUseParentHandlers(false);
@@ -53,19 +46,13 @@ public class Users {
 	}
 
 	public void print() {
-<<<<<<< HEAD
+
 	    LOGGER.info("================================================================================");
 	    LOGGER.info("\t\t\t\tUser Profile");
 	    LOGGER.log(Level.INFO, "Email: {0}", new Object[]{this.email});
 	    LOGGER.log(Level.INFO, "Role: {0}", new Object[]{this.role});
 	    LOGGER.log(Level.INFO, "Contact Number: {0}", new Object[]{this.contactNumber});
-=======
-		LOGGER.info("================================================================================");
-		LOGGER.info("\t\t\t\tUser Profile");
-		LOGGER.info("Email: " + this.email);
-		LOGGER.info("Role: " + this.role);
-		LOGGER.info("Contact Number: "+this.contactNumber);
->>>>>>> 13ff115b9e13653810dc42c6433f49d8919c5da2
+
 	}
 
 
