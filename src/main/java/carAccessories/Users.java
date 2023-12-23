@@ -1,10 +1,8 @@
 package carAccessories;
 
 import java.util.logging.ConsoleHandler;
-import java.util.logging.Formatter;
 import java.util.logging.Handler;
 import java.util.logging.Level;
-import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,9 +18,9 @@ public class Users {
 	private static final Logger LOGGER = Logger.getLogger(Users.class.getName());
 
 	static {
-	    LOGGER.setLevel(Level.SEVERE);
+	    LOGGER.setLevel(Level.INFO);
 	    Handler consoleHandler = new ConsoleHandler();
-	    consoleHandler.setLevel(Level.SEVERE);
+	    consoleHandler.setLevel(Level.INFO);
         consoleHandler.setFormatter(new PlainTextFormatter());
 	    LOGGER.addHandler(consoleHandler);
 	    LOGGER.setUseParentHandlers(false);
