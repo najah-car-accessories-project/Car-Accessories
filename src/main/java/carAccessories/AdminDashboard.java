@@ -18,15 +18,30 @@ public class AdminDashboard {
 	private static final String INDEX_FORMAT = "{0}. ";
 
 	static {
-		LOGGER.setLevel(Level.ALL);
+		LOGGER.setLevel(Level.INFO);
 		Handler consoleHandler = new ConsoleHandler();
-		consoleHandler.setLevel(Level.ALL);
+		consoleHandler.setLevel(Level.INFO);
         consoleHandler.setFormatter(new PlainTextFormatter());
-
+        Logger rootLogger = Logger.getLogger("");
+        for (Handler handler : rootLogger.getHandlers()) {
+            if (handler instanceof ConsoleHandler) {
+                handler.setLevel(Level.OFF);
+            }
+        }
 		LOGGER.addHandler(consoleHandler);
 		LOGGER.setUseParentHandlers(false);
 	}
 
+	static {
+        LOGGER.setLevel(Level.INFO);
+        Handler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.INFO);
+        consoleHandler.setFormatter(new PlainTextFormatter());
+
+        LOGGER.addHandler(consoleHandler);
+        LOGGER.setUseParentHandlers(false);
+    }
+	
 	public AdminDashboard() {
 		this.users = new ArrayList<>();
 		this.productCatalogs = new ArrayList<>();
