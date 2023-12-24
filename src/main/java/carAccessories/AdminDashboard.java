@@ -20,7 +20,6 @@ public class AdminDashboard {
 	static {
 		Handler consoleHandler = new ConsoleHandler();
 		consoleHandler.setFormatter(new PlainTextFormatter());
-		LOGGER.addHandler(consoleHandler);
 		LOGGER.setUseParentHandlers(false);
 	}
 
