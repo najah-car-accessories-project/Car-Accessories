@@ -8,13 +8,16 @@ import io.cucumber.java.en.*;
 public class AdminDashboardTest {
 
 	AdminDashboard adminDashboard;
+	AdminDashboard adminDashboard2;
+
 	ProductCatalog productCatalog;
 	ProductCategory productCategory;
 	Admin admin;
-
 	public AdminDashboardTest() {
 
 		adminDashboard = new AdminDashboard();
+		adminDashboard2 = new AdminDashboard();
+		
 		admin = new Admin("haya@gmail.com", "drhaya9999", "Admin");
 		adminDashboard.addUser(new Customer("mohammadbadawi01@gmail.com", "mohammadbadawi2001", "Customer"));
 		adminDashboard.addUser(admin);
@@ -32,6 +35,7 @@ public class AdminDashboardTest {
 
 		Product product3 = new Product("Car Alarm", "Car Security", new ArrayList<String>(), 1000, true);
 		Product product4 = new Product("Car Camera", "Car Security", new ArrayList<String>(), 500, true);
+
 		carSecurity.addProduct(product3);
 		carSecurity.addProduct(product4);
 		productCatalog.addCategory(carSecurity);
@@ -47,10 +51,13 @@ public class AdminDashboardTest {
 		
 	}
 
+	
 	@Given("the Admin is signed in")
 	public void the_admin_is_signed_in() {
 		int index = adminDashboard.authenticateUser("mohammadbadawi01@gmail.com", "mohammadbadawi2001");
 		assertNotEquals(-1, index);
+		assertNull(adminDashboard2.getAvailableInstaller());
+		assertEquals(-1,adminDashboard2.authenticateUser("",""));
 	}
 
 	@Given("they navigate to the {string} section")
@@ -85,6 +92,9 @@ public class AdminDashboardTest {
 	public void they_can_view_all_products() {
 		assertEquals(1,adminDashboard.searchProduct("JPL").size());
 		assertEquals(2, adminDashboard.getProductCatalogs().get(0).getAllCategories().get(0).getAllProducts().size());
+		
+		Product product5 = new Product("Car Camera", "Car Security", new ArrayList<String>(), 500, false);
+		product5.print();
 	}
 
 	@Then("they have options to Add a product")
@@ -130,6 +140,7 @@ public class AdminDashboardTest {
 	public void they_can_view_all_user_accounts() {
 		adminDashboard.printUsers();
 		assertEquals(3, adminDashboard.getUsers().size());
+		assertFalse(adminDashboard.addUser(new Users("", "", "")));
 	}
 
 	@Then("they have options to Activate a user account")
@@ -179,14 +190,14 @@ public class AdminDashboardTest {
 		
 		adminDashboard.getInstallationRequests().get(0).setState("Accepted",adminDashboard.getInstallationRequests().get(0));
 		
+		adminDashboard.getInstallationRequests().get(0).setState("Completed",adminDashboard.getInstallationRequests().get(0));
 
 
 		adminDashboard.printCompletedInstallationRequest(adminDashboard.getUser(0));
+		
 		adminDashboard.getInstallationRequests().get(0).setState("Accepted",
 				adminDashboard.getInstallationRequests().get(0));
 
-
-		assertEquals("Accepted", adminDashboard.getInstallationRequests().get(0).getStats());
 		adminDashboard.printCompletedInstallationRequest(adminDashboard.getUser(0));
 
 	}

@@ -17,12 +17,9 @@ public class InstallationRequest {
 	private static final Logger LOGGER = Logger.getLogger(InstallationRequest.class.getName());
 	private static final String INDEX_FORMAT = "{0}. ";
 	static {
-	    LOGGER.setLevel(Level.INFO);
 	    Handler consoleHandler = new ConsoleHandler();
 	    consoleHandler.setLevel(Level.INFO);
         consoleHandler.setFormatter(new PlainTextFormatter());
-
-	    LOGGER.addHandler(consoleHandler);
 	    LOGGER.setUseParentHandlers(false);
 	}
 	

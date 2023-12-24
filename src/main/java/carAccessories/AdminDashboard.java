@@ -19,8 +19,8 @@ public class AdminDashboard {
 
 	static {
 		Handler consoleHandler = new ConsoleHandler();
-		consoleHandler.setLevel(Level.INFO);
-        consoleHandler.setFormatter(new PlainTextFormatter());
+		consoleHandler.setFormatter(new PlainTextFormatter());
+		LOGGER.addHandler(consoleHandler);
 		LOGGER.setUseParentHandlers(false);
 	}
 
@@ -67,6 +67,7 @@ public class AdminDashboard {
 	public int authenticateUser(String email, String password) {
 		for (int i = 0; i < users.size(); i++) {
 			if (users.get(i).checkEmail(email)) {
+				
 				if (users.get(i).checkPassword(password)) {
 					users.get(i).signIn(email, password);
 					return i;
@@ -153,7 +154,7 @@ public class AdminDashboard {
 		int i = 0;
 		for (InstallationRequest installationRequest : installationRequests) {
 			if (installationRequest.getCustomer().getEmail().equals(user.getEmail())
-					&& "completed".equalsIgnoreCase(installationRequest.getStats())) {
+					&&  installationRequest.getStats().equalsIgnoreCase("completed") ) {
 				LOGGER.log(Level.INFO, INDEX_FORMAT, new Object[] { i });
 				installationRequest.print();
 				LOGGER.info(HORIZONTAL_HR);

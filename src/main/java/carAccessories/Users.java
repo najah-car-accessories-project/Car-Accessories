@@ -18,11 +18,9 @@ public class Users {
 	private static final Logger LOGGER = Logger.getLogger(Users.class.getName());
 
 	static {
-	    LOGGER.setLevel(Level.INFO);
 	    Handler consoleHandler = new ConsoleHandler();
 	    consoleHandler.setLevel(Level.INFO);
         consoleHandler.setFormatter(new PlainTextFormatter());
-	    LOGGER.addHandler(consoleHandler);
 	    LOGGER.setUseParentHandlers(false);
 	}
 	public Users(String email, String password, String role) {
