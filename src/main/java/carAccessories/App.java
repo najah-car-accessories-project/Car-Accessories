@@ -20,7 +20,6 @@ public class App {
 	final static String hr = "================================================================================";
 
 	public static void main(String[] args) {
-		 System.setProperty("mail.debug", "false");
 		 
 		init();
 		while (true) {
