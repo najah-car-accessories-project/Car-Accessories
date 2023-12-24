@@ -189,10 +189,12 @@ public class App {
 					System.out.println("Choose Category:");
 					categoryIndex = scan.nextInt();
 					System.out.println("Enter Product Name:");
-					String name = scan.next();
+					scan = new Scanner(System.in);
+					String name = scan.nextLine();
 					System.out.println("Enter Product Description:");
-					String descriptions = scan.next();
-					System.out.println("Enter Product Price:");
+					scan = new Scanner(System.in);
+					String descriptions = scan.nextLine();
+					System.out.println("Enter Product Price 99.9: ");
 					double price = scan.nextDouble();
 					System.out.println("Enter Product Availability yes=>Availabile, not=>not Availabile: ");
 					boolean isAvailable = true;
@@ -226,9 +228,11 @@ public class App {
 							switch (select2) {
 								case 1:
 									System.out.println("Enter New Name:");
-									String newName = scan.next();
+									scan = new Scanner(System.in);
+									String newName = scan.nextLine();
 									System.out.println("Enter New Description:");
-									String newDescription = scan.next();
+									scan = new Scanner(System.in);
+									String newDescription = scan.nextLine();
 									System.out.println("Enter New Price:");
 									double newPrice = scan.nextDouble();
 									System.out.println("Enter New Availability:");
@@ -264,7 +268,8 @@ public class App {
 					break;
 				case 4:
 					System.out.println("Enter Category Name:");
-					String categoryName = scan.next();
+					scan = new Scanner(System.in);
+					String categoryName = scan.nextLine();
 					ProductCategory newCategory = new ProductCategory(categoryName);
 					productCatalog.addCategory(newCategory);
 					System.out.println("Category Added Successfully.\n");
@@ -414,7 +419,8 @@ public class App {
 					productCatalog.printCatalog();
 
 					System.out.println("Enter Search Key: ");
-					String searchKey = scan.next();
+					scan = new Scanner(System.in);
+					String searchKey = scan.nextLine();
 					List<Product> productsSearch = adminDashboard.searchProduct(searchKey);
 					int i = 0;
 					for (Product product : productsSearch) {
@@ -430,7 +436,8 @@ public class App {
 					productCatalog.printCatalog();
 
 					System.out.println("Enter Car Details: ");
-					String carDetails = scan.next();
+					scan = new Scanner(System.in);
+					String carDetails = scan.nextLine();
 					System.out.println("Enter Date dd-MM-yyyy");
 					String date = scan.next();
 					System.out.println("Enter Time HH:mm");
