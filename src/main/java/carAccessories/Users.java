@@ -27,7 +27,6 @@ public class Users {
 	private void configureLogger() {
         Logger rootLogger = Logger.getLogger("");
         rootLogger.getHandlers()[0].setFormatter(new SimpleFormatter());
-        rootLogger.setLevel(java.util.logging.Level.INFO);
     }
 
     private class SimpleFormatter extends java.util.logging.SimpleFormatter {
@@ -40,7 +39,7 @@ public class Users {
 		configureLogger();
 	    LOGGER.info("================================================================================");
 	    LOGGER.info("User Profile");
-	    String user = "Email: "+this.email + " Role: "+this.role + " Contact Number: "+this.contactNumber + "\n";
+	    String user = "Email: "+this.email + "\nRole: "+this.role + "\nContact Number: "+this.contactNumber + "\n";
 	    LOGGER.info(user);
 	}
 

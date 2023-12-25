@@ -77,7 +77,6 @@ public class AdminDashboard {
 	private void configureLogger() {
         Logger rootLogger = Logger.getLogger("");
         rootLogger.getHandlers()[0].setFormatter(new SimpleFormatter());
-        rootLogger.setLevel(java.util.logging.Level.INFO);
     }
 
     private class SimpleFormatter extends java.util.logging.SimpleFormatter {
