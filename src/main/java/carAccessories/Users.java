@@ -30,8 +30,8 @@ public class Users {
 
     private class SimpleFormatter extends java.util.logging.SimpleFormatter {
         @Override
-        public synchronized String format(java.util.logging.LogRecord record) {
-            return record.getMessage() + "\n";
+        public synchronized String format(java.util.logging.LogRecord logRecord) {
+            return logRecord.getMessage() + "\n";
         }
     }
 	public void print() {
