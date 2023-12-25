@@ -12,7 +12,7 @@ public class AdminDashboard {
 	private List<ProductCatalog> productCatalogs;
 	private List<InstallationRequest> installationRequests;
 	private static final String HORIZONTAL_HR = "--------------------------------";
-	private static Logger LOGGER = Logger.getLogger(AdminDashboard.class.getName());
+	private static Logger logger = Logger.getLogger(AdminDashboard.class.getName());
 	private EmailService emailService = new EmailService();
 	private static final String INDEX_FORMAT = "{0}. ";
 
@@ -28,27 +28,27 @@ public class AdminDashboard {
 	}
 
 	void printCompletedInstallationRequests() {
-		LOGGER.info(HORIZONTAL_HR);
-		LOGGER.info("\t\t\t Completed Installation Requests: ");
+		logger.info(HORIZONTAL_HR);
+		logger.info("\t\t\t Completed Installation Requests: ");
 		int i = 0;
 		for (InstallationRequest installationRequest : installationRequests) {
 			if ("completed".equalsIgnoreCase(installationRequest.getStats())) {
-				LOGGER.log(Level.INFO, INDEX_FORMAT, new Object[] { i });
+				logger.log(Level.INFO, INDEX_FORMAT, new Object[] { i });
 				installationRequest.print();
-				LOGGER.info(HORIZONTAL_HR);
+				logger.info(HORIZONTAL_HR);
 				i++;
 			}
 		}
 	}
 
 	void printInstallationRequests() {
-		LOGGER.info(HORIZONTAL_HR);
-		LOGGER.info("\t\t\t Installation Requests: ");
+		logger.info(HORIZONTAL_HR);
+		logger.info("\t\t\t Installation Requests: ");
 		int i = 0;
 		for (InstallationRequest installationRequest : installationRequests) {
-			LOGGER.log(Level.INFO, INDEX_FORMAT, new Object[] { i });
+			logger.log(Level.INFO, INDEX_FORMAT, new Object[] { i });
 			installationRequest.print();
-			LOGGER.info(HORIZONTAL_HR);
+			logger.info(HORIZONTAL_HR);
 			i++;
 		}
 	}
@@ -89,7 +89,8 @@ public class AdminDashboard {
 		configureLogger();
 		int i = 0;
 		for (Users user : users) {
-			LOGGER.info(i + ". ");
+			String index = i + ". ";
+			logger.info(index);
 			user.print();
 			i++;
 		}
@@ -144,24 +145,24 @@ public class AdminDashboard {
 		int i = 0;
 		for (InstallationRequest installationRequest : installationRequests) {
 			if (installationRequest.getCustomer().getEmail().equals(user.getEmail())) {
-				LOGGER.log(Level.INFO, INDEX_FORMAT, new Object[] { i });
+				logger.log(Level.INFO, INDEX_FORMAT, new Object[] { i });
 				installationRequest.print();
-				LOGGER.info(HORIZONTAL_HR);
+				logger.info(HORIZONTAL_HR);
 				i++;
 			}
 		}
 	}
 
 	public void printCompletedInstallationRequest(Users user) {
-		LOGGER.info(HORIZONTAL_HR);
-		LOGGER.info("\t\t\t Order Installation Requests: ");
+		logger.info(HORIZONTAL_HR);
+		logger.info("\t\t\t Order Installation Requests: ");
 		int i = 0;
 		for (InstallationRequest installationRequest : installationRequests) {
 			if (installationRequest.getCustomer().getEmail().equals(user.getEmail())
 					&&  installationRequest.getStats().equalsIgnoreCase("completed") ) {
-				LOGGER.log(Level.INFO, INDEX_FORMAT, new Object[] { i });
+				logger.log(Level.INFO, INDEX_FORMAT, new Object[] { i });
 				installationRequest.print();
-				LOGGER.info(HORIZONTAL_HR);
+				logger.info(HORIZONTAL_HR);
 				i++;
 			}
 		}

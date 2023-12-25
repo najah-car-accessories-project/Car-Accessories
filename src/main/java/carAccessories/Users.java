@@ -12,7 +12,7 @@ public class Users {
 	public String contactNumber;
 	public boolean active;
 	protected boolean isSignedIn;
-	private static Logger LOGGER = Logger.getLogger(Users.class.getName());
+	private static Logger logger = Logger.getLogger(Users.class.getName());
 
 	public Users(String email, String password, String role) {
 		this.email = email;
@@ -22,7 +22,6 @@ public class Users {
 		this.active = true;
 		this.contactNumber = "Empty";
 		this.name = "Empty";
-
 	}
 	private void configureLogger() {
         Logger rootLogger = Logger.getLogger("");
@@ -37,10 +36,10 @@ public class Users {
     }
 	public void print() {
 		configureLogger();
-	    LOGGER.info("================================================================================");
-	    LOGGER.info("User Profile");
+	    logger.info("================================================================================");
+	    logger.info("User Profile");
 	    String user = "Email: "+this.email + "\nRole: "+this.role + "\nContact Number: "+this.contactNumber + "\n";
-	    LOGGER.info(user);
+	    logger.info(user);
 	}
 
 
