@@ -2,10 +2,9 @@ package carAccessories;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 public class AdminDashboard {
 
@@ -13,15 +12,10 @@ public class AdminDashboard {
 	private List<ProductCatalog> productCatalogs;
 	private List<InstallationRequest> installationRequests;
 	private static final String HORIZONTAL_HR = "--------------------------------";
-	private static final Logger LOGGER = Logger.getLogger(AdminDashboard.class.getName());
+	private static Logger LOGGER = Logger.getLogger(AdminDashboard.class.getName());
 	private EmailService emailService = new EmailService();
 	private static final String INDEX_FORMAT = "{0}. ";
 
-	static {
-		Handler consoleHandler = new ConsoleHandler();
-		consoleHandler.setFormatter(new PlainTextFormatter());
-		LOGGER.setUseParentHandlers(false);
-	}
 
 	public AdminDashboard() {
 		this.users = new ArrayList<>();
@@ -80,12 +74,24 @@ public class AdminDashboard {
 	public List<Users> getUsers() {
 		return users;
 	}
+	private void configureLogger() {
+        Logger rootLogger = Logger.getLogger("");
+        rootLogger.getHandlers()[0].setFormatter(new SimpleFormatter());
+        rootLogger.setLevel(java.util.logging.Level.INFO);
+    }
 
+    private class SimpleFormatter extends java.util.logging.SimpleFormatter {
+        @Override
+        public synchronized String format(java.util.logging.LogRecord record) {
+            return record.getMessage() + "\n";
+        }
+    }
 	void printUsers() {
+		configureLogger();
 		int i = 0;
 		for (Users user : users) {
-			LOGGER.log(Level.INFO, "{0}. {1} - {2} - {3}",
-					new Object[] { i, user.getEmail(), user.getContactNumber(), user.getRole() });
+			LOGGER.info(i + ". ");
+			user.print();
 			i++;
 		}
 	}
