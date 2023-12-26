@@ -2,7 +2,6 @@ package carAccessories;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AdminDashboard {
@@ -13,7 +12,6 @@ public class AdminDashboard {
 	private static final String HORIZONTAL_HR = "--------------------------------";
 	private static Logger logger = Logger.getLogger(AdminDashboard.class.getName());
 	private EmailService emailService = new EmailService();
-	private static final String INDEX_FORMAT = "{0}. ";
 
 	public AdminDashboard() {
 		this.users = new ArrayList<>();

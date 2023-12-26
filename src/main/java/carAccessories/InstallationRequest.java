@@ -1,7 +1,6 @@
 package carAccessories;
 
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class InstallationRequest {
@@ -46,7 +45,7 @@ public class InstallationRequest {
     }
 	void print() {
 		configureLogger();
-		String installationRequest = "Installation Date: "+this.date + "\nCustomer: "+this.customer.getName() + "\nCar Details: "+this.carDetails + "\n";
+		String installationRequest = "Installation Date: "+this.date + "\nCustomer: "+this.customer.getName() + "\nCar Details: "+this.carDetails + "\n" + (this.installer != null ? "Installer: Assigned" : "Installer: Not Assigned") + "\nState: "+this.state + "\n";
 		logger.info(installationRequest);    
 		logger.info("Products: ");
 		for (Product product : products) {
@@ -92,5 +91,4 @@ public class InstallationRequest {
 	public void setInstaller(Installer installer2) {
 		this.installer = installer2;
 	}
-
 }
