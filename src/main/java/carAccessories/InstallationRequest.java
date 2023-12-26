@@ -1,8 +1,6 @@
 package carAccessories;
 
 import java.util.List;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,14 +12,9 @@ public class InstallationRequest {
 	private EmailService emailService = new EmailService();
 	private String state;
 	private String carDetails;
-	private static final Logger LOGGER = Logger.getLogger(InstallationRequest.class.getName());
-	private static final String INDEX_FORMAT = "{0}. ";
-	static {
-	    Handler consoleHandler = new ConsoleHandler();
-	    consoleHandler.setLevel(Level.INFO);
-        consoleHandler.setFormatter(new PlainTextFormatter());
-	    LOGGER.setUseParentHandlers(false);
-	}
+	private static Logger logger = Logger.getLogger(InstallationRequest.class.getName());
+
+	
 	
 	public InstallationRequest(String date, Installer installer, Customer customer, List<Product> products,
 			String carDetails) {
@@ -40,14 +33,22 @@ public class InstallationRequest {
 		this.carDetails = carDetails;
 		this.state = "Pending";
 	}
+	private void configureLogger() {
+        Logger rootLogger = Logger.getLogger("");
+        rootLogger.getHandlers()[0].setFormatter(new SimpleFormatter());
+    }
 
+    private class SimpleFormatter extends java.util.logging.SimpleFormatter {
+        @Override
+        public synchronized String format(java.util.logging.LogRecord logRecord) {
+            return logRecord.getMessage() + "\n";
+        }
+    }
 	void print() {
-		 LOGGER.log(Level.INFO, "{0}Installation Date: {1}", new Object[]{INDEX_FORMAT, this.date});
-	        LOGGER.log(Level.INFO, "{0}Installer: {1}", new Object[]{INDEX_FORMAT, (this.installer != null ? this.installer.getEmail() : "None assigned")});
-	        LOGGER.log(Level.INFO, "{0}Customer: {1}", new Object[]{INDEX_FORMAT, this.customer.getEmail()});
-	        LOGGER.log(Level.INFO, "{0}Car Details: {1}", new Object[]{INDEX_FORMAT, this.carDetails});
-	        LOGGER.log(Level.INFO, "{0}State: {1}", new Object[]{INDEX_FORMAT, this.state});
-	        LOGGER.info("Products: ");
+		configureLogger();
+		String installationRequest = "Installation Date: "+this.date + "\nCustomer: "+this.customer.getName() + "\nCar Details: "+this.carDetails + "\n";
+		logger.info(installationRequest);    
+		logger.info("Products: ");
 		for (Product product : products) {
 			product.print();
 		}

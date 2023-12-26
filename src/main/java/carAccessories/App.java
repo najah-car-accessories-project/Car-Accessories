@@ -138,17 +138,6 @@ public class App {
 		productCatalog.addCategory(carSecurity);
 		adminDashboard.addProductCatalog(productCatalog);
 
-		// InstallationRequest installationRequest1 = new
-		// InstallationRequest("07-10-2023 9:00",
-		// new Installer("mohammadbadawi01@gmail.com", "badawi01", "Installer"),
-		// new Customer("majdbasem6@gmail.com", "majd123", "Customer"),
-		// carAudio.getAllProducts(),
-		// "M8 twin terbo stage 3");
-		// adminDashboard.addInstallationRequest(installationRequest1);
-		// adminDashboard.addInstallationRequest(installationRequest1);
-		// adminDashboard.addInstallationRequest(installationRequest1);
-		// adminDashboard.addInstallationRequest(installationRequest1);
-
 	}
 
 	public static void adminDashboardActivities() {

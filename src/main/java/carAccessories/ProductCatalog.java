@@ -2,22 +2,14 @@ package carAccessories;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ProductCatalog {
 	private List<ProductCategory> categories;
-	private static final Logger LOGGER = Logger.getLogger(ProductCatalog.class.getName());
+	private static  Logger logger = Logger.getLogger(ProductCatalog.class.getName());
 	private static final String HORIZONTAL_HR = "--------------------------------";
 
-	static {
-		Handler consoleHandler = new ConsoleHandler();
-		consoleHandler.setLevel(Level.INFO);
-        consoleHandler.setFormatter(new PlainTextFormatter());
-		LOGGER.setUseParentHandlers(false);
-	}
 
 	public ProductCatalog() {
 		this.categories = new ArrayList<>();
@@ -30,7 +22,17 @@ public class ProductCatalog {
 	public List<ProductCategory> getAllCategories() {
 		return categories;
 	}
+	private void configureLogger() {
+        Logger rootLogger = Logger.getLogger("");
+        rootLogger.getHandlers()[0].setFormatter(new SimpleFormatter());
+    }
 
+    private class SimpleFormatter extends java.util.logging.SimpleFormatter {
+        @Override
+        public synchronized String format(java.util.logging.LogRecord logRecord) {
+            return logRecord.getMessage() + "\n";
+        }
+    }
 	public void addProductToCategory(Product newProduct, String category) {
 
 		for (ProductCategory productCategory : categories) {
@@ -41,10 +43,12 @@ public class ProductCatalog {
 	}
 
 	public void printCategories() {
+		 configureLogger();
 		int i = 0;
 		for (ProductCategory category : categories) {
-	        LOGGER.log(Level.INFO, "{0}. ", new Object[]{i});
-			LOGGER.info(category.getName());
+	        String index = i + ". ";
+	        logger.info(index);
+			logger.info(category.getName());
 			i++;
 
 		}
@@ -52,14 +56,14 @@ public class ProductCatalog {
 	}
 
 	void printCatalog() {
-
-		LOGGER.fine(HORIZONTAL_HR);
-		LOGGER.fine("Categorys");
-		LOGGER.fine(HORIZONTAL_HR);
+		 configureLogger();
+		logger.fine(HORIZONTAL_HR);
+		logger.fine("Categorys");
+		logger.fine(HORIZONTAL_HR);
 		for (ProductCategory category : categories) {
-			LOGGER.fine(category.getName());
+			logger.fine(category.getName());
 			category.printProducts();
-			LOGGER.fine(HORIZONTAL_HR);
+			logger.fine(HORIZONTAL_HR);
 		}
 
 	}

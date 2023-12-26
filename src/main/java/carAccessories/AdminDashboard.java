@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class AdminDashboard {
 
 	private List<Users> users;
@@ -15,7 +14,6 @@ public class AdminDashboard {
 	private static Logger logger = Logger.getLogger(AdminDashboard.class.getName());
 	private EmailService emailService = new EmailService();
 	private static final String INDEX_FORMAT = "{0}. ";
-
 
 	public AdminDashboard() {
 		this.users = new ArrayList<>();
@@ -28,12 +26,15 @@ public class AdminDashboard {
 	}
 
 	void printCompletedInstallationRequests() {
+		configureLogger();
+
 		logger.info(HORIZONTAL_HR);
 		logger.info("\t\t\t Completed Installation Requests: ");
 		int i = 0;
 		for (InstallationRequest installationRequest : installationRequests) {
 			if ("completed".equalsIgnoreCase(installationRequest.getStats())) {
-				logger.log(Level.INFO, INDEX_FORMAT, new Object[] { i });
+				String index = i + ". ";
+				logger.info(index);
 				installationRequest.print();
 				logger.info(HORIZONTAL_HR);
 				i++;
@@ -42,11 +43,14 @@ public class AdminDashboard {
 	}
 
 	void printInstallationRequests() {
+		configureLogger();
+
 		logger.info(HORIZONTAL_HR);
 		logger.info("\t\t\t Installation Requests: ");
 		int i = 0;
 		for (InstallationRequest installationRequest : installationRequests) {
-			logger.log(Level.INFO, INDEX_FORMAT, new Object[] { i });
+			String index = i + ". ";
+			logger.info(index);
 			installationRequest.print();
 			logger.info(HORIZONTAL_HR);
 			i++;
@@ -60,7 +64,7 @@ public class AdminDashboard {
 	public int authenticateUser(String email, String password) {
 		for (int i = 0; i < users.size(); i++) {
 			if (users.get(i).checkEmail(email)) {
-				
+
 				if (users.get(i).checkPassword(password)) {
 					users.get(i).signIn(email, password);
 					return i;
@@ -74,17 +78,19 @@ public class AdminDashboard {
 	public List<Users> getUsers() {
 		return users;
 	}
-	private void configureLogger() {
-        Logger rootLogger = Logger.getLogger("");
-        rootLogger.getHandlers()[0].setFormatter(new SimpleFormatter());
-    }
 
-    private class SimpleFormatter extends java.util.logging.SimpleFormatter {
-        @Override
-        public synchronized String format(java.util.logging.LogRecord logRecord) {
-            return logRecord.getMessage() + "\n";
-        }
-    }
+	private void configureLogger() {
+		Logger rootLogger = Logger.getLogger("");
+		rootLogger.getHandlers()[0].setFormatter(new SimpleFormatter());
+	}
+
+	private class SimpleFormatter extends java.util.logging.SimpleFormatter {
+		@Override
+		public synchronized String format(java.util.logging.LogRecord logRecord) {
+			return logRecord.getMessage() + "\n";
+		}
+	}
+
 	void printUsers() {
 		configureLogger();
 		int i = 0;
@@ -142,10 +148,14 @@ public class AdminDashboard {
 	}
 
 	public void printInstallationRequest(Users user) {
+		configureLogger();
+
 		int i = 0;
 		for (InstallationRequest installationRequest : installationRequests) {
 			if (installationRequest.getCustomer().getEmail().equals(user.getEmail())) {
-				logger.log(Level.INFO, INDEX_FORMAT, new Object[] { i });
+				String index = i + ". ";
+				logger.info(index);
+
 				installationRequest.print();
 				logger.info(HORIZONTAL_HR);
 				i++;
@@ -154,13 +164,17 @@ public class AdminDashboard {
 	}
 
 	public void printCompletedInstallationRequest(Users user) {
+		configureLogger();
+
 		logger.info(HORIZONTAL_HR);
 		logger.info("\t\t\t Order Installation Requests: ");
 		int i = 0;
 		for (InstallationRequest installationRequest : installationRequests) {
 			if (installationRequest.getCustomer().getEmail().equals(user.getEmail())
-					&&  installationRequest.getStats().equalsIgnoreCase("completed") ) {
-				logger.log(Level.INFO, INDEX_FORMAT, new Object[] { i });
+					&& installationRequest.getStats().equalsIgnoreCase("completed")) {
+
+				String index = i + ". ";
+				logger.info(index);
 				installationRequest.print();
 				logger.info(HORIZONTAL_HR);
 				i++;

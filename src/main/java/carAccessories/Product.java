@@ -1,8 +1,5 @@
 package carAccessories;
 import java.util.List;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Handler;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Product {
@@ -11,31 +8,29 @@ public class Product {
 	private List<String> images;
 	private double price;
 	private boolean isAvailable;
-	private static final Logger LOGGER = Logger.getLogger(Product.class.getName());
+	private static Logger logger = Logger.getLogger(Product.class.getName());
 	private static final String HORIZONTAL_HR = "--------------------------------";
-	private static final String INDEX_FORMAT = "{0}. ";
 
-	static {
-	    Handler consoleHandler = new ConsoleHandler();
-	    consoleHandler.setLevel(Level.INFO);
-        consoleHandler.setFormatter(new PlainTextFormatter());
-	    LOGGER.setUseParentHandlers(false);
-
-	}
 
 	public void print() {
-	    LOGGER.fine(HORIZONTAL_HR);
-	    LOGGER.fine("\t\t\t\tProduct Details");
-	    LOGGER.log(Level.FINE, INDEX_FORMAT + "Name: {0}", new Object[]{this.name});
-	    LOGGER.log(Level.FINE, INDEX_FORMAT + "Description: {0}", new Object[]{this.descriptions});
-	    LOGGER.log(Level.FINE, INDEX_FORMAT + "Price: {0} ILS", new Object[]{this.price});
-	    LOGGER.log(Level.FINE, INDEX_FORMAT + "Availability: {0}", new Object[]{this.isAvailable ? "In Stock" : "Out of Stock"});
-
-	    LOGGER.fine(HORIZONTAL_HR);
-
+		configureLogger();
+	    logger.fine(HORIZONTAL_HR);
+	    logger.fine("\t\t\t\tProduct Details");
+	    String product = "Name: "+this.name + "\nDescription: "+this.descriptions + "\nPrice: "+this.price + "\nAvailability: "+(this.isAvailable ? "In Stock" : "Out of Stock") + "\n";
+	    logger.info(product);
 	}
 
-	
+	private void configureLogger() {
+        Logger rootLogger = Logger.getLogger("");
+        rootLogger.getHandlers()[0].setFormatter(new SimpleFormatter());
+    }
+
+    private class SimpleFormatter extends java.util.logging.SimpleFormatter {
+        @Override
+        public synchronized String format(java.util.logging.LogRecord logRecord) {
+            return logRecord.getMessage() + "\n";
+        }
+    }
 	public Product(String name, String descriptions, List<String>images, double price, boolean isAvailable) {
 		this.name = name;
 		this.descriptions = descriptions;
