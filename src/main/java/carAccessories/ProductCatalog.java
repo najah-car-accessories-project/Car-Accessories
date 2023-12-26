@@ -59,8 +59,9 @@ public class ProductCatalog {
 		logger.fine(HORIZONTAL_HR);
 		logger.fine("Categorys");
 		logger.fine(HORIZONTAL_HR);
+		
 		for (ProductCategory category : categories) {
-			logger.fine(category.getName());
+			logger.info(category.getName());
 			category.printProducts();
 			logger.fine(HORIZONTAL_HR);
 		}

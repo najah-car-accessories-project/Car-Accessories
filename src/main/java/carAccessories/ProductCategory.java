@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 public class ProductCategory {
     private String name;
     private List<Product> products;
-	private static Logger logger = Logger.getLogger(Users.class.getName());
+	private static Logger logger = Logger.getLogger(ProductCategory.class.getName());
 
     public ProductCategory(String name) {
         this.name = name;

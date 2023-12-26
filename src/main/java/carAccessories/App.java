@@ -254,6 +254,8 @@ public class App {
 				case 3:
 
 					productCatalog.printCatalog();
+					
+					
 					break;
 				case 4:
 					System.out.println("Enter Category Name:");
